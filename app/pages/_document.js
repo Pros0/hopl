@@ -1,5 +1,6 @@
 import React from 'react';
 import Document from 'next/document';
+import Head from 'next/head';
 import {
   ServerStyleSheet as StyledComponentSheets,
   ThemeProvider,
@@ -19,8 +20,17 @@ export default class HoplDocument extends Document {
             styledSheets.collectStyles(
               materialUiSheets.collect(
                 <>
-                  <ThemeProvider theme={{}}></ThemeProvider>
-                  <App {...props} />
+                  <Head>
+                    <title>Hopl</title>
+                    <meta charSet="utf-8" />
+                    <meta
+                      name="viewport"
+                      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+                    />
+                  </Head>
+                  <ThemeProvider theme={{}}>
+                    <App {...props} />
+                  </ThemeProvider>
                 </>,
               ),
             ),

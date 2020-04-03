@@ -245,6 +245,17 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.2.tgz#26520bf09abe4a5644cd5414e37125a8954241dd"
   integrity sha512-tsAQNx32a8CoFhjhijUIhI4kccIAgmGhy8LZMZgGfmXcpMbPRUqn5LWmgRttILi6yeGmBJd2xsPkFMs0PzgPCw==
 
+"@loopback/authorization@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@loopback/authorization/-/authorization-0.5.2.tgz#53a2b52c15a6e1a1f46c3a8daedfb6941df85ed2"
+  integrity sha512-dj5UvvtdPcpCVc5eh7sHEfJvE+j8InfSjGD/4p/AQQ7m6QoMWaa8cV0NZ6zgnAcyxyy6h8a1E19f7cSnLSc+yw==
+  dependencies:
+    "@loopback/context" "^3.2.0"
+    "@loopback/core" "^2.2.0"
+    "@loopback/security" "^0.2.2"
+    debug "^4.1.1"
+    tslib "^1.11.1"
+
 "@loopback/boot@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@loopback/boot/-/boot-2.0.2.tgz#1a5d9956f16f171806b6370e174ee09eefd0494a"
@@ -424,6 +435,16 @@
     tslib "^1.11.1"
     type-is "^1.6.18"
     validator "^13.0.0"
+
+"@loopback/security@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@loopback/security/-/security-0.2.2.tgz#28ea18855e822268aa04cacd0a373dd00e20d18a"
+  integrity sha512-3CT6+bUy6yoZ58u4ZkyHhjZehXP4MOo9a4qUn7dfxn3jCO2zF3N8GQFz9RpHWKm8jGTDg6TuJsoINUo3wy8YWg==
+  dependencies:
+    "@loopback/context" "^3.2.0"
+    "@loopback/core" "^2.2.0"
+    debug "^4.1.1"
+    tslib "^1.11.1"
 
 "@loopback/service-proxy@^2.0.2":
   version "2.0.2"

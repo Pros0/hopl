@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "postinstall": "yarn install --cwd hopl-api",
-    "start:api": "yarn --cwd hopl-api start"
+    "start:api": "yarn --cwd hopl-api start",
+    "start": "concurrently -k \"yarn start:api\""
   },
   "dependencies": {
     "concurrently": "^5.1.0"

@@ -3,8 +3,8 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-import { repository, model, property } from '@loopback/repository';
-import { validateCredentials } from '../services/validator.service';
+import {repository, model, property} from '@loopback/repository';
+import {validateCredentials} from '../services/validator.service';
 import {
   post,
   put,
@@ -14,22 +14,22 @@ import {
   HttpErrors,
   getModelSchemaRef,
 } from '@loopback/rest';
-import { User } from '../models';
-import { UserRepository } from '../repositories';
-import { inject } from '@loopback/core';
+import {User} from '../models';
+import {UserRepository} from '../repositories';
+import {inject} from '@loopback/core';
 import {
   authenticate,
   TokenService,
   UserService,
 } from '@loopback/authentication';
-import { authorize } from '@loopback/authorization';
-import { UserProfile, securityId, SecurityBindings } from '@loopback/security';
+import {authorize} from '@loopback/authorization';
+import {UserProfile, securityId, SecurityBindings} from '@loopback/security';
 import {
   CredentialsRequestBody,
   UserProfileSchema,
 } from './specs/user-controller.specs';
-import { Credentials } from '../repositories/user.repository';
-import { PasswordHasher } from '../services/hash.password.bcryptjs';
+import {Credentials} from '../repositories/user.repository';
+import {PasswordHasher} from '../services/hash.password.bcryptjs';
 
 import {
   TokenServiceBindings,
@@ -37,8 +37,8 @@ import {
   UserServiceBindings,
 } from '../keys';
 import _ from 'lodash';
-import { OPERATION_SECURITY_SPEC } from '../utils/security-spec';
-import { basicAuthorization } from '../services/basic.authorizer';
+import {OPERATION_SECURITY_SPEC} from '../utils/security-spec';
+import {basicAuthorization} from '../services/basic.authorizer';
 
 @model()
 export class NewUserRequest extends User {
@@ -54,11 +54,10 @@ export class UserController {
     @repository(UserRepository) public userRepository: UserRepository,
     @inject(PasswordHasherBindings.PASSWORD_HASHER)
     public passwordHasher: PasswordHasher,
-    @inject(TokenServiceBindings.TOKEN_SERVICE)
-    public jwtService: TokenService,
+    @inject(TokenServiceBindings.TOKEN_SERVICE) public jwtService: TokenService,
     @inject(UserServiceBindings.USER_SERVICE)
     public userService: UserService<User, Credentials>,
-  ) { }
+  ) {}
 
   @post('/users', {
     responses: {
@@ -105,7 +104,7 @@ export class UserController {
       // set the password
       await this.userRepository
         .userCredentials(savedUser.id)
-        .create({ password });
+        .create({password});
 
       return savedUser;
     } catch (error) {
@@ -142,7 +141,7 @@ export class UserController {
     @inject(SecurityBindings.USER)
     currentUserProfile: UserProfile,
     @param.path.string('userId') userId: string,
-    @requestBody({ description: 'update user' }) user: User,
+    @requestBody({description: 'update user'}) user: User,
   ): Promise<void> {
     try {
       // Only admin can assign roles
@@ -193,7 +192,6 @@ export class UserController {
       },
     },
   })
-
   @authenticate('jwt')
   async printCurrentUser(
     @inject(SecurityBindings.USER)
@@ -224,7 +222,7 @@ export class UserController {
   })
   async login(
     @requestBody(CredentialsRequestBody) credentials: Credentials,
-  ): Promise<{ token: string }> {
+  ): Promise<{token: string}> {
     // ensure the user exists, and the password is correct
     const user = await this.userService.verifyCredentials(credentials);
 
@@ -234,6 +232,6 @@ export class UserController {
     // create a JSON Web Token based on the user profile
     const token = await this.jwtService.generateToken(userProfile);
 
-    return { token };
+    return {token};
   }
 }

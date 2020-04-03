@@ -1,7 +1,7 @@
-import { HoplApiApplication } from './application';
-import { ApplicationConfig } from '@loopback/core';
+import {HoplApiApplication} from './application';
+import {ApplicationConfig} from '@loopback/core';
 
-export { HoplApiApplication };
+export {HoplApiApplication};
 
 export async function main(options: ApplicationConfig = {}) {
   const app = new HoplApiApplication(options);

@@ -29,9 +29,7 @@ import {
   UserServiceBindings,
 } from './keys';
 import {User} from './models';
-import {
-  UserRepository,
-} from './repositories';
+import {UserRepository} from './repositories';
 import {MyAuthenticationSequence} from './sequence';
 import {BcryptHasher} from './services/hash.password.bcryptjs';
 import {JWTService} from './services/jwt-service';

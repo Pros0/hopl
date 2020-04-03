@@ -4,11 +4,12 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
+import Menu from '../components/Menu';
 
 import originalTheme from '../theme/theme';
 import GlobalBodyHeightStyle from '../theme/globalBodyHeightStyle';
 import GlobalStyle from '../theme/globalStyle';
-
+import Layout from '../components/Layout';
 const cache = createIntlCache();
 
 export default class HoplApp extends App {
@@ -54,7 +55,12 @@ export default class HoplApp extends App {
                   this.setState({ theme: { ...theme, ...toMerge } });
                 }}
               />
-              <Component {...pageProps} />
+              <div style={{ display: 'flex' }}>
+                <Menu />
+                <Layout>
+                  <Component {...pageProps} />
+                </Layout>
+              </div>
             </>
           </ThemeProvider>
         </MuiThemeProvider>

@@ -6,7 +6,7 @@
   "scripts": {
     "dev-old": "next -p 3001",
     "dev": "node --icu-data-dir=node_modules/full-icu server.js",
-    "build": "next build",
+    "build": "next build && npm run extract",
     "extract": "node ./scripts/extract '{pages,components}/*.{js,ts,tsx}'",
     "start-old": "next start -p 3001",
     "start": "NODE_ENV=production node --icu-data-dir=node_modules/full-icu server.js"

@@ -1,0 +1,13 @@
+{
+  "name": "hopl",
+  "version": "1.0.0",
+  "description": "We connect people with needs",
+  "main": "index.js",
+  "repository": "git@github.com:Pros0/hopl.git",
+  "author": "Pros0",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "install": "yarn install --cwd hopl-api"
+  }
+}

@@ -3,9 +3,11 @@ import App from 'next/app';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
 
 import originalTheme from '../theme/theme';
 import GlobalBodyHeightStyle from '../theme/globalBodyHeightStyle';
+const cache = createIntlCache();
 
 export default class HoplApp extends App {
   state = {
@@ -19,27 +21,41 @@ export default class HoplApp extends App {
       pageProps = await Component.getInitialProps(ctx);
     }
 
-    return { pageProps };
+    const { req } = ctx;
+    // eslint-disable-next-line no-underscore-dangle
+    const { locale, messages } = req || window.__NEXT_DATA__.props;
+
+    return { pageProps, locale, messages };
   }
 
   render() {
     const { theme } = this.state;
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, locale, messages } = this.props;
+
+    const intl = createIntl(
+      {
+        locale,
+        messages,
+      },
+      cache,
+    );
 
     return (
-      <MuiThemeProvider theme={theme}>
-        <ThemeProvider theme={theme}>
-          <>
-            <CssBaseline />
-            <GlobalBodyHeightStyle
-              mergeWithTheme={(toMerge) => {
-                this.setState({ theme: { ...theme, ...toMerge } });
-              }}
-            />
-            <Component {...pageProps} />
-          </>
-        </ThemeProvider>
-      </MuiThemeProvider>
+      <RawIntlProvider value={intl}>
+        <MuiThemeProvider theme={theme}>
+          <ThemeProvider theme={theme}>
+            <>
+              <CssBaseline />
+              <GlobalBodyHeightStyle
+                mergeWithTheme={(toMerge) => {
+                  this.setState({ theme: { ...theme, ...toMerge } });
+                }}
+              />
+              <Component {...pageProps} />
+            </>
+          </ThemeProvider>
+        </MuiThemeProvider>
+      </RawIntlProvider>
     );
   }
 }

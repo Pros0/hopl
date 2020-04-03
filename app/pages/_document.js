@@ -9,6 +9,11 @@ export default class HoplDocument extends Document {
     const styledSheets = new StyledComponentSheets();
     const materialUiSheets = new MaterialUiServerStyleSheets();
     const originalRenderPage = ctx.renderPage;
+    const {
+      req: { locale, localeDataScript },
+    } = ctx;
+
+    const polyfill = `https://cdn.polyfill.io/v3/polyfill.min.js?features=Intl.~locale.${locale}`;
 
     try {
       ctx.renderPage = () =>
@@ -24,6 +29,12 @@ export default class HoplDocument extends Document {
                       name="viewport"
                       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, maximum-scale=1.0, user-scalable=no"
                     />
+                    <script src={polyfill} />
+                    <script
+                      dangerouslySetInnerHTML={{
+                        __html: localeDataScript,
+                      }}
+                    />
                   </Head>
                   <App {...props} />
                 </>,
@@ -34,6 +45,8 @@ export default class HoplDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
+        locale,
+        localeDataScript,
         styles: (
           <>
             {initialProps.styles}

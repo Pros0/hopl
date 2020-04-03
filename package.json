@@ -10,5 +10,8 @@
   "scripts": {
     "postinstall": "yarn install --cwd hopl-api",
     "start:api": "yarn --cwd hopl-api start"
+  },
+  "dependencies": {
+    "concurrently": "^5.1.0"
   }
 }

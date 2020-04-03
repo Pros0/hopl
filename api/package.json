@@ -47,6 +47,7 @@
     "!*/__tests__"
   ],
   "dependencies": {
+    "@loopback/authentication": "^4.1.1",
     "@loopback/authorization": "^0.5.2",
     "@loopback/boot": "^2.0.2",
     "@loopback/context": "^3.2.0",
@@ -56,14 +57,20 @@
     "@loopback/rest": "^3.1.0",
     "@loopback/rest-explorer": "^2.0.2",
     "@loopback/service-proxy": "^2.0.2",
+    "bcryptjs": "^2.4.3",
+    "isemail": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.2",
-    "tslib": "^1.10.0"
+    "tslib": "^1.10.0",
+    "yaml": "^1.8.3"
   },
   "devDependencies": {
     "@loopback/build": "^5.0.0",
     "@loopback/eslint-config": "^6.0.2",
     "@loopback/testlab": "^2.0.2",
+    "@types/bcryptjs": "^2.4.2",
     "@types/node": "^10.17.17",
+    "@types/yaml": "^1.2.0",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
     "eslint": "^6.8.0",

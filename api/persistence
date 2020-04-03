@@ -1,0 +1,28 @@
+{
+  "ids": {
+    "UserCredential": 13,
+    "User": 15
+  },
+  "models": {
+    "UserCredential": {
+      "1": "{\"password\":\"$2a$10$J4e25S84wiks50RTTA6ok.qYsh6p5z2AfKffC3ua9nQz67B2DfB4C\",\"userId\":\"3\",\"id\":\"1\"}",
+      "2": "{\"password\":\"$2a$10$Uf8TZjHN5n7tSZMoNVu7F./rZOCny.vrauf2kPPZNA9QoAMqiLLAe\",\"userId\":\"4\",\"id\":\"2\"}",
+      "3": "{\"password\":\"$2a$10$CpU1nErT/bjyhHYCJGbHKOOIOzyByO4X4604euCZOyS5xHwUPpPl.\",\"userId\":\"5\",\"id\":\"3\"}",
+      "4": "{\"password\":\"$2a$10$WnSiiwLATKq0wRFZXeH83utR0NvG9esEaiOkmTWGTPXeErSbxZL2G\",\"userId\":\"6\",\"id\":\"4\"}",
+      "5": "{\"password\":\"$2a$10$6fa0gu3jeHfxUR4cuT.SwuAeuo8oz1U9NcnVA1fwTZmjHViYW0MXm\",\"userId\":\"7\",\"id\":\"5\"}",
+      "6": "{\"password\":\"$2a$10$AVnL4QPVckrjiMNeUTAV4OED7Rwnoowq9BXcxtIV/3T6ctA9WQ6/u\",\"userId\":\"8\",\"id\":\"6\"}",
+      "7": "{\"password\":\"$2a$10$UmK75CZnrNCRYzyJ2b9p5u7F9LJdlWWoTjVFUPENmXXytXy6D8JuC\",\"userId\":\"9\",\"id\":\"7\"}",
+      "8": "{\"password\":\"$2a$10$KqbP7b6.3W.ezdD0xvL9HOK/h/8Cd43jE2z4shAltFgopG.1NUeY2\",\"userId\":\"10\",\"id\":\"8\"}",
+      "9": "{\"password\":\"$2a$10$1pg7ZRjX3q7wAsOFilnmc.y1OHEIGeTjSh.rKm.H9/4NitOzUgEsW\",\"userId\":\"11\",\"id\":\"9\"}",
+      "10": "{\"password\":\"$2a$10$.7SXnK7NtcItaawYiKJ8xulwYAgLS750Xdeq8bpJlTSYcNTr5ojkG\",\"userId\":\"12\",\"id\":\"10\"}",
+      "11": "{\"password\":\"$2a$10$O3zdenJStmVF1wSagSdYWuD4U3mpGxPQv9PVAA.rBGL30L/gI54Uu\",\"userId\":\"13\",\"id\":\"11\"}",
+      "12": "{\"password\":\"$2a$10$I4uMNWxhWv06EW/bcRB8XO/FNnzeeDrHbcrUbGHubMUXnsmysa6mq\",\"userId\":\"14\",\"id\":\"12\"}"
+    },
+    "User": {
+      "11": "{\"email\":\"admin@example.com\",\"firstName\":\"Administrator\",\"roles\":[\"admin\"],\"id\":\"11\"}",
+      "12": "{\"email\":\"support@example.com\",\"firstName\":\"Support\",\"roles\":[\"support\"],\"id\":\"12\"}",
+      "13": "{\"email\":\"john@example.com\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"roles\":[\"customer\"],\"id\":\"13\"}",
+      "14": "{\"email\":\"jane@example.com\",\"firstName\":\"Jane\",\"lastName\":\"Doe\",\"roles\":[\"customer\"],\"id\":\"14\"}"
+    }
+  }
+}

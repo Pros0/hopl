@@ -1,4 +1,4 @@
-import {HpleApiApplication} from '../..';
+import {HoplApiApplication} from '../..';
 import {
   createRestAppClient,
   givenHttpServerConfig,
@@ -14,7 +14,7 @@ export async function setupApplication(): Promise<AppWithClient> {
     // port: +process.env.PORT,
   });
 
-  const app = new HpleApiApplication({
+  const app = new HoplApiApplication({
     rest: restConfig,
   });
 
@@ -27,6 +27,6 @@ export async function setupApplication(): Promise<AppWithClient> {
 }
 
 export interface AppWithClient {
-  app: HpleApiApplication;
+  app: HoplApiApplication;
   client: Client;
 }

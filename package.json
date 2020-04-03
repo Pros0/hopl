@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "install": "yarn install --cwd hopl-api"
+    "postinstall": "yarn install --cwd hopl-api",
+    "start:api": "yarn --cwd hopl-api start"
   }
 }

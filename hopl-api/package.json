@@ -1,7 +1,7 @@
 {
-  "name": "hple-api",
+  "name": "hopl-api",
   "version": "1.0.0",
-  "description": "It&#39;s so hopeful",
+  "description": "It's so hopeful",
   "keywords": [
     "loopback-application",
     "loopback"

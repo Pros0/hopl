@@ -7,6 +7,8 @@ import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
 
 import originalTheme from '../theme/theme';
 import GlobalBodyHeightStyle from '../theme/globalBodyHeightStyle';
+import GlobalStyle from '../theme/globalStyle';
+
 const cache = createIntlCache();
 
 export default class HoplApp extends App {
@@ -46,6 +48,7 @@ export default class HoplApp extends App {
           <ThemeProvider theme={theme}>
             <>
               <CssBaseline />
+              <GlobalStyle />
               <GlobalBodyHeightStyle
                 mergeWithTheme={(toMerge) => {
                   this.setState({ theme: { ...theme, ...toMerge } });

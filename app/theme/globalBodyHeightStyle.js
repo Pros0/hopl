@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   body, #__next {
     min-height: ${({ theme, viewPortHeight }) =>
       theme.viewPortHeight || viewPortHeight || '100vh'};
-    height: auto;
+    height: 100%;
   }
 `;
 

@@ -1,3 +1,5 @@
+import React from 'react';
+
 const Index = () => (
   <div>
     <p>Hello Hopl! I did a push!</p>

@@ -1,1 +1,7 @@
 node_modules
+
+# Next
+.next
+
+# VS Code extensions
+.history

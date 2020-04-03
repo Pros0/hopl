@@ -10,7 +10,8 @@
   "scripts": {
     "postinstall": "yarn install --cwd hopl-api",
     "start:api": "yarn --cwd hopl-api start",
-    "start": "concurrently -k \"yarn start:api\""
+    "start:app": "yarn --cwd app dev",
+    "start": "concurrently -k \"yarn start:api\" \"yarn start:app\""
   },
   "dependencies": {
     "concurrently": "^5.1.0"

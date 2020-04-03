@@ -1,0 +1,6 @@
+{
+  "name": "Memory",
+  "connector": "memory",
+  "localStorage": "persistence",
+  "file": "persistence"
+}

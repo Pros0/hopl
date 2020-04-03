@@ -1,12 +1,12 @@
-import {HpleApiApplication} from './application';
-import {ApplicationConfig} from '@loopback/core';
+import { HoplApiApplication } from './application';
+import { ApplicationConfig } from '@loopback/core';
 
-export {HpleApiApplication};
+export { HoplApiApplication };
 
 export async function main(options: ApplicationConfig = {}) {
-  const app = new HpleApiApplication(options);
+  const app = new HoplApiApplication(options);
   await app.boot();
-  
+
   await app.start();
 
   const url = app.restServer.url;

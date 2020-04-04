@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar/AppBar';
 import clsx from 'clsx';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge/Badge';
@@ -12,6 +13,8 @@ import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { Cookies } from 'react-cookie';
+import Router from 'next/router';
 import { mainListItems, secondaryListItems } from './listItems';
 
 const drawerWidth = 240;
@@ -105,6 +108,11 @@ const Menu = () => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const signOut = () => {
+    const cookies = new Cookies();
+    cookies.remove('token');
+    Router.push('/');
+  };
 
   return (
     <>
@@ -139,6 +147,7 @@ const Menu = () => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
+          <Button onClick={signOut}>Sign out</Button>
         </Toolbar>
       </AppBar>
       <Drawer

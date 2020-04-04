@@ -10,3 +10,6 @@ dist
 
 # ide stuff 
 .idea
+
+# Untrack Google files
+.env

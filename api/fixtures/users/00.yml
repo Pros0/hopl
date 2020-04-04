@@ -1,4 +1,5 @@
-email: admin@example.com
-firstName: Administrator
-password: admin12345678
-roles: ['admin']
+email: adam@ramberg.com
+firstName: Adam
+lastName: Ramberg
+password: password
+roles: ['organiser']

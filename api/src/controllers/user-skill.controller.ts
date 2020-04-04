@@ -17,6 +17,7 @@ import {
 } from '@loopback/rest';
 import {User, Skill} from '../models';
 import {UserRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
 export class UserSkillController {
   constructor(
@@ -35,6 +36,7 @@ export class UserSkillController {
       },
     },
   })
+  @authenticate('jwt')
   async find(
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Skill>,
@@ -50,6 +52,7 @@ export class UserSkillController {
       },
     },
   })
+  @authenticate('jwt')
   async create(
     @param.path.string('id') id: typeof User.prototype.id,
     @requestBody({
@@ -76,6 +79,7 @@ export class UserSkillController {
       },
     },
   })
+  @authenticate('jwt')
   async patch(
     @param.path.string('id') id: string,
     @requestBody({
@@ -99,6 +103,7 @@ export class UserSkillController {
       },
     },
   })
+  @authenticate('jwt')
   async delete(
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Skill)) where?: Where<Skill>,

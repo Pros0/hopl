@@ -18,6 +18,7 @@ import {
 } from '@loopback/rest';
 import {Skill} from '../models';
 import {SkillRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
 export class SkillController {
   constructor(
@@ -33,6 +34,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async create(
     @requestBody({
       content: {
@@ -57,6 +59,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async count(@param.where(Skill) where?: Where<Skill>): Promise<Count> {
     return this.skillRepository.count(where);
   }
@@ -76,6 +79,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async find(@param.filter(Skill) filter?: Filter<Skill>): Promise<Skill[]> {
     return this.skillRepository.find(filter);
   }
@@ -88,6 +92,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async updateAll(
     @requestBody({
       content: {
@@ -114,6 +119,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async findById(
     @param.path.string('id') id: string,
     @param.filter(Skill, {exclude: 'where'})
@@ -129,6 +135,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async updateById(
     @param.path.string('id') id: string,
     @requestBody({
@@ -150,6 +157,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async replaceById(
     @param.path.string('id') id: string,
     @requestBody() skill: Skill,
@@ -164,6 +172,7 @@ export class SkillController {
       },
     },
   })
+  @authenticate('jwt')
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.skillRepository.deleteById(id);
   }

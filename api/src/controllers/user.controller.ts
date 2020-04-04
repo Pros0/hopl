@@ -85,8 +85,7 @@ export class UserController {
     })
     newUserRequest: NewUserRequest,
   ): Promise<User> {
-    // All new users have the "customer" role by default
-    newUserRequest.roles = ['customer'];
+    newUserRequest.roles = ['applicant'];
     // ensure a valid email value and password value
     validateCredentials(_.pick(newUserRequest, ['email', 'password']));
 
@@ -134,7 +133,7 @@ export class UserController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'customer'],
+    allowedRoles: ['admin', 'organiser', 'applicant'],
     voters: [basicAuthorization],
   })
   async set(
@@ -150,8 +149,8 @@ export class UserController {
       }
       const updatedUser = await this.userRepository.updateById(userId, user);
       return updatedUser;
-    } catch (e) {
-      return e;
+    } catch (error) {
+      return error;
     }
   }
 
@@ -172,7 +171,7 @@ export class UserController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'support', 'customer'],
+    allowedRoles: ['admin', 'support', 'applicant'],
     voters: [basicAuthorization],
   })
   async findById(@param.path.string('userId') userId: string): Promise<User> {

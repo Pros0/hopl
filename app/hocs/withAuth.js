@@ -54,6 +54,8 @@ const withAuth = ({
         pageProps = await WrappedComponent.getInitialProps(ctx);
       }
 
+      pageProps = { ...pageProps, user: result };
+
       return { pageProps, shouldRenderWrappedComponent };
     }
 

@@ -15,16 +15,13 @@ import {
   post,
   requestBody,
 } from '@loopback/rest';
-import {
-  User,
-  Skill,
-} from '../models';
+import {User, Skill} from '../models';
 import {UserRepository} from '../repositories';
 
 export class UserSkillController {
   constructor(
     @repository(UserRepository) protected userRepository: UserRepository,
-  ) { }
+  ) {}
 
   @get('/users/{id}/skills', {
     responses: {
@@ -61,11 +58,12 @@ export class UserSkillController {
           schema: getModelSchemaRef(Skill, {
             title: 'NewSkillInUser',
             exclude: ['id'],
-            optional: ['userId']
+            optional: ['userId'],
           }),
         },
       },
-    }) skill: Omit<Skill, 'id'>,
+    })
+    skill: Omit<Skill, 'id'>,
   ): Promise<Skill> {
     return this.userRepository.skills(id).create(skill);
   }

@@ -6,6 +6,7 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import withAuth from '../hocs/withAuth';
 
 const Wrapper = styled.div`
   height: 100%;
@@ -88,4 +89,8 @@ const Login = () => (
   </Wrapper>
 );
 
-export default Login;
+export default withAuth({
+  WrappedComponent: Login,
+  redirectTo: '/#',
+  shouldBeLoggedIn: false,
+});

@@ -9,6 +9,14 @@ export default defineMessages({
     id: 'search.profile.add',
     defaultMessage: 'Create search profile'
   },
+  saveSearchProfile: {
+    id: 'search.profile.save',
+    defaultMessage: 'Save search profile'
+  },
+  addSearchProfileInfo: {
+    id: 'search.profile.info',
+    defaultMessage: 'Use this profile to create a base template for searching if you have reocuring requirments on volunteers.'
+  },
   searchProfileSelectPlaceholder: {
     id: 'search.profile.select',
     defaultMessage: 'Default filter'    

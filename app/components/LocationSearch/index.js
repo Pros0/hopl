@@ -3,18 +3,18 @@ import { TextField, Grid, Container } from '@material-ui/core';
 import LocationOn from '@material-ui/icons/LocationOn';
 import { useIntl } from 'react-intl';
 import messages from './messages';
-import { FlexGrowGrid } from './styled';
+import { FlexGrowGrid } from 'components/common/styles';
 
-const SearchField = () => {
+const LocationSearch = () => {
   const { formatMessage } = useIntl();
   return <Grid container spacing={1} alignItems="flex-end">
   <Grid item>
     <LocationOn />
   </Grid>
   <FlexGrowGrid item>
-    <TextField fullWidth label={formatMessage(messages.searchPlaceHolder)} />
+    <TextField fullWidth label={formatMessage(messages.locationPlaceholder)} />
   </FlexGrowGrid>
 </Grid>
 }
 
-export default SearchField;
+export default LocationSearch;

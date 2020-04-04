@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { func } from 'prop-types';
 import { Container, Grid, InputLabel, Select, MenuItem, Button, FormControl } from '@material-ui/core';
 import FilterList from '@material-ui/icons/FilterList';
 import { useIntl } from 'react-intl';
 import messages from './messages';
 
-const SearchProfile = () => {
+const SearchProfile = ({ addSearchProfileClick }) => {
   const { formatMessage } = useIntl();
   const [selectedProfile, setSelected] = useState('');
   return <Grid container alignItems="center" spacing={1}>
@@ -19,15 +20,23 @@ const SearchProfile = () => {
           value={selectedProfile} 
           onChange={e => setSelected(e.target.value)}>
           <MenuItem disabled value=''>
-            <em>derp</em>
+            <em>{formatMessage(messages.searchProfileSelectPlaceholder)}</em>
           </MenuItem>
         </Select>
       </FormControl>
     </Grid>
     <Grid item xs={6}>
-      <Button>{formatMessage(messages.addSearchProfile)}</Button>
+      <Button onClick={addSearchProfileClick}>{formatMessage(messages.addSearchProfile)}</Button>
     </Grid>
   </Grid>
+}
+
+SearchProfile.propTypes = {
+  SearchProfile: func,
+}
+
+SearchProfile.defaultProps = {
+  SearchProfile: () => {},
 }
 
 export default SearchProfile;

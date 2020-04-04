@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Grid, Typography } from '@material-ui/core';
 
-export const FlexGrowGrid = styled(Grid)`
-  flex-grow: 1;
-`;
-
 export const SearchFieldWrapper = styled.div`
   margin-bottom: ${({ theme }) => css`${theme.spacing(4)}px`};
 `;

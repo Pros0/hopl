@@ -3,7 +3,6 @@ import { node } from 'prop-types';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core';
 import Menu from './Menu';
-import withAuth from '../hocs/withAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,9 +68,4 @@ Layout.propTypes = {
   children: node,
 };
 
-export default withAuth({
-  WrappedComponent: Layout,
-  shouldBeLoggedIn: true,
-  // eslint-disable-next-line react/prop-types
-  AltComponent: ({ children }) => <>{children}</>,
-});
+export default Layout;

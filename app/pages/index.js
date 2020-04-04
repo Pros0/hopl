@@ -6,6 +6,7 @@ import {
   useIntl,
 } from 'react-intl';
 import withAuth from '../hocs/withAuth';
+import Layout from '../components/Layout';
 
 const { description } = defineMessages({
   description: {
@@ -18,18 +19,20 @@ const Index = () => {
   const intl = useIntl();
 
   return (
-    <div>
-      <p>
-        <FormattedMessage
-          id="greeting"
-          defaultMessage="Hello Hopl! I did a push!"
-        />
-      </p>
-      <p>{intl.formatMessage(description)}</p>
-      <p>
-        <FormattedNumber value={1000} />
-      </p>
-    </div>
+    <Layout>
+      <div>
+        <p>
+          <FormattedMessage
+            id="greeting"
+            defaultMessage="Hello Hopl! I did a push!"
+          />
+        </p>
+        <p>{intl.formatMessage(description)}</p>
+        <p>
+          <FormattedNumber value={1000} />
+        </p>
+      </div>
+    </Layout>
   );
 };
 

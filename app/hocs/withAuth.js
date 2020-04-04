@@ -22,7 +22,6 @@ const withAuth = ({
     static async getInitialProps(ctx) {
       const cookies = this.getCookies(ctx);
       const token = cookies.get('token');
-      console.log(WrappedComponent.name);
 
       const redirect = () =>
         typeof window !== 'undefined'

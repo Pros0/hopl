@@ -18,13 +18,16 @@ import {
 import {User, Skill} from '../models';
 import {UserRepository} from '../repositories';
 import {authenticate} from '@loopback/authentication';
-
+import {OPERATION_SECURITY_SPEC} from '../utils/security-spec';
+import {authorize} from '@loopback/authorization';
+import {basicAuthorization} from '../services/basic.authorizer';
 export class UserSkillController {
   constructor(
     @repository(UserRepository) protected userRepository: UserRepository,
   ) {}
 
   @get('/users/{id}/skills', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Array of User has many Skill',
@@ -37,6 +40,10 @@ export class UserSkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async find(
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<Skill>,
@@ -45,6 +52,7 @@ export class UserSkillController {
   }
 
   @post('/users/{id}/skills', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'User model instance',
@@ -53,6 +61,10 @@ export class UserSkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async create(
     @param.path.string('id') id: typeof User.prototype.id,
     @requestBody({
@@ -72,6 +84,7 @@ export class UserSkillController {
   }
 
   @patch('/users/{id}/skills', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'User.Skill PATCH success count',
@@ -80,6 +93,10 @@ export class UserSkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async patch(
     @param.path.string('id') id: string,
     @requestBody({
@@ -96,6 +113,7 @@ export class UserSkillController {
   }
 
   @del('/users/{id}/skills', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'User.Skill DELETE success count',
@@ -104,6 +122,10 @@ export class UserSkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async delete(
     @param.path.string('id') id: string,
     @param.query.object('where', getWhereSchemaFor(Skill)) where?: Where<Skill>,

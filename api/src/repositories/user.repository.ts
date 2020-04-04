@@ -1,12 +1,12 @@
 import {
   DefaultCrudRepository,
   HasOneRepositoryFactory,
-  repository,
-} from '@loopback/repository';
-import {User, UserCredential} from '../models';
+  repository, HasManyRepositoryFactory} from '@loopback/repository';
+import {User, UserCredential, Skill} from '../models';
 import {MemoryDataSource} from '../datasources';
 import {Getter, inject} from '@loopback/core';
 import {UserCredentialRepository} from './user-credential.repository';
+import {SkillRepository} from './skill.repository';
 
 export type Credentials = {
   email: string;
@@ -22,12 +22,16 @@ export class UserRepository extends DefaultCrudRepository<
     typeof User.prototype.id
   >;
 
+  public readonly skills: HasManyRepositoryFactory<Skill, typeof User.prototype.id>;
+
   constructor(
     @inject('datasources.Memory') dataSource: MemoryDataSource,
     @repository.getter('UserCredentialRepository')
-    protected userCredentialRepositoryGetter: Getter<UserCredentialRepository>,
+    protected userCredentialRepositoryGetter: Getter<UserCredentialRepository>, @repository.getter('SkillRepository') protected skillRepositoryGetter: Getter<SkillRepository>,
   ) {
     super(User, dataSource);
+    this.skills = this.createHasManyRepositoryFactoryFor('skills', skillRepositoryGetter,);
+    this.registerInclusionResolver('skills', this.skills.inclusionResolver);
 
     this.userCredentials = this.createHasOneRepositoryFactoryFor(
       'userCredentials',

@@ -15,6 +15,11 @@ export class Skill extends Entity {
   })
   name: string;
 
+  @property({
+    type: 'string',
+  })
+  userId?: string;
+
   constructor(data?: Partial<Skill>) {
     super(data);
   }

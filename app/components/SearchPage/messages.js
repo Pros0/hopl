@@ -5,6 +5,10 @@ export default defineMessages({
     id: 'search.placeholder',
     defaultMessage: 'Search for a city to search in',
   },
+  placeholderSearchProfile: {
+    id: 'search.profile.placeholder',
+    defaultMessage: 'Filter name',
+  },
   addSearchProfile: {
     id: 'search.profile.add',
     defaultMessage: 'Create search profile',

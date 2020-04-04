@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { func } from 'prop-types';
 import {
   TextField,
   Grid,
@@ -12,7 +13,7 @@ import { useIntl } from 'react-intl';
 import { FlexGrowGrid } from 'components/common/styles';
 import messages from './messages';
 
-const LocationSearch = () => {
+const LocationSearch = ({ onChange }) => {
   const { formatMessage } = useIntl();
   const [loading, setLoading] = useState(false);
   const [options, setOptions] = useState([]);
@@ -54,7 +55,9 @@ const LocationSearch = () => {
           getOptionLabel={(option) => option.name}
           options={options}
           loading={loading}
-          renderOption={(option) => <>{option.name}</>}
+          onChange={(e, option) => {
+            onChange(option);
+          }}
           renderInput={(params) => (
             <TextField
               {...params}
@@ -64,9 +67,13 @@ const LocationSearch = () => {
               inputProps={{
                 ...params.inputProps,
                 autoComplete: 'new-password', // disable autocomplete and autofill
-                endAdornment: loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null,
+                endAdornment: (
+                  <>
+                    {loading ? (
+                      <CircularProgress color="inherit" size={20} />
+                    ) : null}
+                  </>
+                ),
               }}
             />
           )}
@@ -74,6 +81,10 @@ const LocationSearch = () => {
       </FlexGrowGrid>
     </Grid>
   );
+};
+
+LocationSearch.propTypes = {
+  onChange: func,
 };
 
 export default LocationSearch;

@@ -12,11 +12,13 @@ import {
   DialogContentText,
   DialogActions,
   Button,
+  Divider,
 } from '@material-ui/core';
 import { useIntl } from 'react-intl';
 import Covid19StatusSelector from 'components/Covid19StatusSelector';
 import DriverLicenceSelector from 'components/DriverLicenceSelector';
 import EducationAutocomplete from 'components/EducationAutocomplete';
+import { FormControlSpacing } from 'components/common/styles';
 import messages from './messages';
 
 const FilterModal = ({ open, onClose }) => {
@@ -28,10 +30,14 @@ const FilterModal = ({ open, onClose }) => {
         <DialogContentText>
           {formatMessage(messages.addSearchProfileInfo)}
         </DialogContentText>
-        <FormControl fullWidth>
-          <TextField fullWidth required label="Filter name" />
-        </FormControl>
-        <Covid19StatusSelector />
+        <FormControlSpacing fullWidth>
+          <TextField
+            fullWidth
+            required
+            label={formatMessage(messages.placeholderSearchProfile)}
+          />
+        </FormControlSpacing>
+        <Covid19StatusSelector showDosentMatterOption />
         <DriverLicenceSelector />
         <EducationAutocomplete />
       </DialogContent>

@@ -1,8 +1,10 @@
 import React from 'react';
+import { bool, array } from 'prop-types';
 import { Skeleton } from '@material-ui/lab';
-import { SearchResultWrapper } from './styled';
+import { useIntl } from 'react-intl';
+import { SearchResultWrapper, SearchResultText } from './styled';
 import SearchResultItem from './searchResultItem';
-
+import messages from './messages';
 
 const LoadingSearchResults = () => {
   return [...Array(6).keys()].map(key => <SearchResultItem 
@@ -18,10 +20,34 @@ const LoadingSearchResults = () => {
     />)
 }
 
-const SearchResult = () => {
+const SearchResult = ({ isLoading, searchResults }) => {
+  const { formatMessage } = useIntl();
   return <SearchResultWrapper>
-      <LoadingSearchResults />
+      {isLoading ? <LoadingSearchResults /> : <>
+        {searchResults.length ? <>
+          {searchResults.map(user => <SearchResultItem 
+            name={user.name}
+            infoText={user.info}
+            avatar={user.name[0]}
+          />)}
+        </> : <>
+          <SearchResultText>
+            {formatMessage(messages.noSearchResults)}
+          </SearchResultText>
+        </>
+      }
+      </>}
     </SearchResultWrapper>
+}
+
+SearchResult.propTypes = {
+  isLoading: bool,
+  searchResults: array
+}
+
+SearchResult.defaultProps = {
+  isLoading: false,
+  searchResults: []
 }
 
 export default SearchResult;

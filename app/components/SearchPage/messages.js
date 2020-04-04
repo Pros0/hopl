@@ -12,5 +12,9 @@ export default defineMessages({
   searchProfileSelectPlaceholder: {
     id: 'search.profile.select',
     defaultMessage: 'Default filter'    
+  },
+  noSearchResults: {
+    id: 'search.results.nousersfound',
+    defaultMessage: 'We could´t find any users matching your search query'   
   }
 });

@@ -29,7 +29,7 @@ const FilterModal = ({ open, onClose }) => {
           {formatMessage(messages.addSearchProfileInfo)}
         </DialogContentText>
         <FormControl fullWidth>
-          <TextField fullWidth required label="Name" />
+          <TextField fullWidth required label="Filter name" />
         </FormControl>
         <Covid19StatusSelector />
         <DriverLicenceSelector />

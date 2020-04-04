@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { bool, func } from 'prop-types';
 import {
   Dialog,
@@ -21,8 +21,9 @@ import EducationAutocomplete from 'components/EducationAutocomplete';
 import { FormControlSpacing } from 'components/common/styles';
 import messages from './messages';
 
-const FilterModal = ({ open, onClose }) => {
+const FilterModal = ({ open, onClose, onChange }) => {
   const { formatMessage } = useIntl();
+  const [filter, setFilter] = useState({});
   return (
     <Dialog open={open} onBackdropClick={onClose}>
       <DialogTitle>{formatMessage(messages.addSearchProfile)}</DialogTitle>
@@ -30,19 +31,17 @@ const FilterModal = ({ open, onClose }) => {
         <DialogContentText>
           {formatMessage(messages.addSearchProfileInfo)}
         </DialogContentText>
-        <FormControlSpacing fullWidth>
-          <TextField
-            fullWidth
-            required
-            label={formatMessage(messages.placeholderSearchProfile)}
-          />
-        </FormControlSpacing>
-        <Covid19StatusSelector showDosentMatterOption />
-        <DriverLicenceSelector />
+        <Covid19StatusSelector
+          onChange={(covid) => setFilter({ ...filter, ...covid })}
+          showDosentMatterOption
+        />
+        <DriverLicenceSelector
+          onChange={(driver) => setFilter({ ...filter, ...driver })}
+        />
         <EducationAutocomplete />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="primary">
+        <Button onClick={() => onChange(filter)} color="primary">
           {formatMessage(messages.saveSearchProfile)}
         </Button>
       </DialogActions>
@@ -53,6 +52,7 @@ const FilterModal = ({ open, onClose }) => {
 FilterModal.propTypes = {
   open: bool,
   onClose: func,
+  onChange: func,
 };
 
 export default FilterModal;

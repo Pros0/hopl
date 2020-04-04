@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
-import { Grid, Typography } from '@material-ui/core';
+import { Grid, Card, Typography } from '@material-ui/core';
 
-export const SearchFieldWrapper = styled.div`
-  margin-bottom: ${({ theme }) =>
+export const SearchFieldWrapper = styled(Card)`
+  ${({ theme }) =>
     css`
-      ${theme.spacing(4)}px
+      margin: ${theme.spacing(4)}px 0;
+      padding: ${theme.spacing(4)}px;
     `};
 `;
 

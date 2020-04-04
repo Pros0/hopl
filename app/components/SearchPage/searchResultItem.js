@@ -3,10 +3,8 @@ import {
   CardHeader,
   Card,
   Avatar,
-  IconButton,
   Typography,
   CardContent,
-  CardActions,
 } from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { SearchItemWrapper } from './styled';
@@ -24,11 +22,6 @@ const SearchResultItem = ({ avatar, infoText, name, shortInfo }) => (
           {infoText}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-      </CardActions>
     </Card>
   </SearchItemWrapper>
 );

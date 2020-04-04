@@ -54,11 +54,11 @@ const LoadingSearchResults = () =>
     />
   ));
 
-const SearchResult = ({ isLoading, searchResults }) => {
+const SearchResult = ({ loading, searchResults }) => {
   const { formatMessage } = useIntl();
   return (
     <SearchResultWrapper>
-      {isLoading ? (
+      {loading ? (
         <LoadingSearchResults />
       ) : (
         <>
@@ -86,12 +86,12 @@ const SearchResult = ({ isLoading, searchResults }) => {
 };
 
 SearchResult.propTypes = {
-  isLoading: bool,
+  loading: bool,
   searchResults: array,
 };
 
 SearchResult.defaultProps = {
-  isLoading: false,
+  loading: false,
   searchResults: [],
 };
 

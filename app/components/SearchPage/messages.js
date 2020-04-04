@@ -9,13 +9,17 @@ export default defineMessages({
     id: 'search.profile.placeholder',
     defaultMessage: 'Filter name',
   },
+  setFilters: {
+    id: 'search.filters',
+    defaultMessage: 'Add filters',
+  },
   addSearchProfile: {
     id: 'search.profile.add',
     defaultMessage: 'Create search profile',
   },
   saveSearchProfile: {
     id: 'search.profile.save',
-    defaultMessage: 'Save search profile',
+    defaultMessage: 'Apply filter',
   },
   addSearchProfileInfo: {
     id: 'search.profile.info',

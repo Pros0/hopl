@@ -1,5 +1,6 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {User} from './user.model';
+import {SearchProfile} from './search-profile.model';
 
 @model()
 export class Organisation extends Entity {
@@ -18,6 +19,9 @@ export class Organisation extends Entity {
 
   @hasMany(() => User)
   members: User[];
+
+  @hasMany(() => SearchProfile)
+  searchProfiles: SearchProfile[];
 
   constructor(data?: Partial<Organisation>) {
     super(data);

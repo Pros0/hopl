@@ -29,6 +29,10 @@ export class SearchProfile extends Entity {
   })
   covidStatus?: string;
 
+  @property({
+    type: 'string',
+  })
+  organisationId?: string;
 
   constructor(data?: Partial<SearchProfile>) {
     super(data);

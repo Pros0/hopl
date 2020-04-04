@@ -28,8 +28,8 @@ import {
   TokenServiceConstants,
   UserServiceBindings,
 } from './keys';
-import {User} from './models';
-import {UserRepository} from './repositories';
+import {User, Skill} from './models';
+import {UserRepository, SkillRepository} from './repositories';
 import {MyAuthenticationSequence} from './sequence';
 import {BcryptHasher} from './services/hash.password.bcryptjs';
 import {JWTService} from './services/jwt-service';
@@ -126,10 +126,7 @@ export class HoplApiApplication extends BootMixin(
     return super.start();
   }
 
-  async migrateSchema(options?: SchemaMigrationOptions) {
-    await super.migrateSchema(options);
-
-    // Pre-populate users
+  async migrateUsers(options?: SchemaMigrationOptions) {
     const passwordHasher = await this.get(
       PasswordHasherBindings.PASSWORD_HASHER,
     );
@@ -150,5 +147,27 @@ export class HoplApiApplication extends BootMixin(
         await userRepo.userCredentials(user.id).create({password});
       }
     }
+  }
+
+  async migrateSkills(options?: SchemaMigrationOptions) {
+    const skillsRepo = await this.getRepository(SkillRepository);
+    await skillsRepo.deleteAll();
+    const skillsDir = path.join(__dirname, '../fixtures/skills');
+    const skillsFiles = fs.readdirSync(skillsDir);
+
+    for (const file of skillsFiles) {
+      if (file.endsWith('.yml')) {
+        const skillFile = path.join(skillsDir, file);
+        const yamlString = YAML.parse(fs.readFileSync(skillFile, 'utf8'));
+        const input = new Skill(yamlString);
+        await skillsRepo.create(input);
+      }
+    }
+  }
+
+  async migrateSchema(options?: SchemaMigrationOptions) {
+    await super.migrateSchema(options);
+    await this.migrateUsers(options);
+    await this.migrateSkills(options);
   }
 }

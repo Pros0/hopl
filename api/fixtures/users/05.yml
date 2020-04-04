@@ -1,4 +1,5 @@
 email: andreas@liljengård.com
 firstName: andreas
-password: liljengård
+lastName: liljengård
+password: password11
 roles: ['organiser']

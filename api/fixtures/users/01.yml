@@ -1,4 +1,5 @@
 email: christian@cromnow.com
 firstName: Christian
-password: Cromnow
+lastName: Cromnow
+password: password11
 roles: ['organiser']

@@ -27,6 +27,26 @@ export class User extends Entity {
   })
   lastName?: string;
 
+  @property({
+    type: 'string',
+  })
+  phone?: string;
+
+  @property({
+    type: 'string',
+  })
+  city?: string;
+
+  @property({
+    type: 'string',
+  })
+  driversLicense?: string;
+
+  @property({
+    type: 'string',
+  })
+  covidStatus?: string;
+
   @hasOne(() => UserCredential)
   userCredentials: UserCredential;
 

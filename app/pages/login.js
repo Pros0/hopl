@@ -54,43 +54,50 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const Login = () => (
-  <Wrapper>
-    <Header>Login</Header>
-    <StyledCard>
-      <Form>
-        <TextField
-          required
-          fullWidth
-          label="Username"
-          variant="outlined"
-          margin="normal"
-        />
-        <TextField
-          required
-          fullWidth
-          label="Password"
-          variant="outlined"
-          margin="normal"
-        />
-        <ButtonWrapper>
-          <StyledButton fullWidth variant="contained" type="submit">
-            Login
-          </StyledButton>
-        </ButtonWrapper>
-      </Form>
+const Login = () => {
+  const submit = (event) => {
+    event.preventDefault();
+  };
 
-      <NextLink href="/signup">
-        <Link margin="normal" variant="body2" href="/signup">
-          Create account
-        </Link>
-      </NextLink>
-    </StyledCard>
-  </Wrapper>
-);
+  return (
+    <Wrapper>
+      <Header>Login</Header>
+      <StyledCard>
+        <form method="post" onSubmit={submit}>
+          <TextField
+            required
+            fullWidth
+            label="Username"
+            variant="outlined"
+            margin="normal"
+          />
+          <TextField
+            required
+            fullWidth
+            label="Password"
+            variant="outlined"
+            margin="normal"
+            type="password"
+          />
+          <ButtonWrapper>
+            <StyledButton fullWidth variant="contained" type="submit">
+              Login
+            </StyledButton>
+          </ButtonWrapper>
+        </form>
+
+        <NextLink href="/signup">
+          <Link margin="normal" variant="body2" href="/signup">
+            Create account
+          </Link>
+        </NextLink>
+      </StyledCard>
+    </Wrapper>
+  );
+};
 
 export default withAuth({
   WrappedComponent: Login,
-  redirectTo: '/#',
+  redirectTo: '/',
   shouldBeLoggedIn: false,
 });

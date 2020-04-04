@@ -5,6 +5,7 @@ import {
   defineMessages,
   useIntl,
 } from 'react-intl';
+import withAuth from '../hocs/withAuth';
 
 const { description } = defineMessages({
   description: {
@@ -32,4 +33,8 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default withAuth({
+  WrappedComponent: Index,
+  redirectTo: '/login',
+  shouldBeLoggedIn: true,
+});

@@ -1,6 +1,9 @@
 import React from 'react';
+import { node } from 'prop-types';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core';
+import Menu from './Menu';
+import withAuth from '../hocs/withAuth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,13 +53,25 @@ const Layout = ({ children }) => {
   const classes = useStyles();
 
   return (
-    <main className={classes.content}>
-      <div className={classes.appBarSpacer} />
-      <Container maxWidth="lg" className={classes.container}>
-        {children}
-      </Container>
-    </main>
+    <div style={{ display: 'flex' }}>
+      <Menu />
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          {children}
+        </Container>
+      </main>
+    </div>
   );
 };
 
-export default Layout;
+Layout.propTypes = {
+  children: node,
+};
+
+export default withAuth({
+  WrappedComponent: Layout,
+  shouldBeLoggedIn: true,
+  // eslint-disable-next-line react/prop-types
+  AltComponent: ({ children }) => <>{children}</>,
+});

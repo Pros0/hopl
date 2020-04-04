@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { object } from 'prop-types';
+import { object, bool, node } from 'prop-types';
 import Router from 'next/router';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import { Cookies } from 'react-cookie';
 import fetcher from '../utils/fetcher';
+import { getGatewayUsersMe } from '../utils/gateways';
 
-const withAuth = ({ WrappedComponent, redirectTo, shouldBeLoggedIn }) => {
+const withAuth = ({
+  WrappedComponent,
+  AltComponent,
+  shouldBeLoggedIn,
+  redirectTo,
+}) => {
   class WithAuth extends Component {
     static getCookies(ctx) {
       return ctx && ctx.req && ctx.req.headers.cookie
@@ -27,11 +33,9 @@ const withAuth = ({ WrappedComponent, redirectTo, shouldBeLoggedIn }) => {
       }
 
       // We don't care about the response, just that we don't get an error = we are authenticated
-      // TODO
-      //   const result = await fetcher('http://localhost:3000/users/me', {
-      //     headers: { Authorization: token },
-      //   });
-      const result = { error: true };
+      const result = await fetcher(getGatewayUsersMe(), {
+        headers: { Authorization: token },
+      });
       const isAuthenticated = !result.error;
 
       let pageProps = {};
@@ -47,17 +51,25 @@ const withAuth = ({ WrappedComponent, redirectTo, shouldBeLoggedIn }) => {
         pageProps = await WrappedComponent.getInitialProps(ctx);
       }
 
-      return { pageProps };
+      return { pageProps, shouldRenderWrappedComponent };
     }
 
     render() {
-      const { pageProps } = this.props;
-      return WrappedComponent && <WrappedComponent {...pageProps} />;
+      const { pageProps, shouldRenderWrappedComponent, children } = this.props;
+      const component = WrappedComponent && shouldRenderWrappedComponent && (
+        <WrappedComponent {...pageProps}>{children}</WrappedComponent>
+      );
+      const alt = AltComponent ? (
+        <AltComponent {...pageProps}>{children}</AltComponent>
+      ) : null;
+      return component || alt;
     }
   }
 
   WithAuth.propTypes = {
     pageProps: object,
+    shouldRenderWrappedComponent: bool,
+    children: node,
   };
 
   WithAuth.displayName = `WithAuth(${

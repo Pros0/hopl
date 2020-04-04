@@ -9,6 +9,7 @@ import messages from './messages';
 const LoadingSearchResults = () =>
   [...Array(6).keys()].map((key) => (
     <SearchResultItem
+      key={key}
       avatar={
         <Skeleton animation="wave" variant="circle" width={40} height={40} />
       }

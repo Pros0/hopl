@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bool, func } from 'prop-types';
 import {
   Dialog,
@@ -24,6 +24,11 @@ import messages from './messages';
 const FilterModal = ({ open, onClose, onChange }) => {
   const { formatMessage } = useIntl();
   const [filter, setFilter] = useState({});
+
+  useEffect(() => {
+    console.log(filter);
+  }, [filter]);
+
   return (
     <Dialog open={open} onBackdropClick={onClose}>
       <DialogTitle>{formatMessage(messages.addSearchProfile)}</DialogTitle>
@@ -32,13 +37,14 @@ const FilterModal = ({ open, onClose, onChange }) => {
           {formatMessage(messages.addSearchProfileInfo)}
         </DialogContentText>
         <Covid19StatusSelector
-          onChange={(covid) => setFilter({ ...filter, ...covid })}
+          onChange={(covid) => setFilter({ ...filter, covid19: covid })}
           showDosentMatterOption
         />
         <DriverLicenceSelector
-          onChange={(driver) => setFilter({ ...filter, ...driver })}
+          onChange={(driver) => {
+            setFilter({ ...filter, driverLicence: driver });
+          }}
         />
-        <EducationAutocomplete />
       </DialogContent>
       <DialogActions>
         <Button onClick={() => onChange(filter)} color="primary">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool } from 'prop-types';
+import { bool, func } from 'prop-types';
 import { useIntl } from 'react-intl';
 import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import { FormControlSpacing } from 'components/common/styles';
@@ -10,7 +10,7 @@ import {
 } from './consts';
 import messages from './messages';
 
-const Covid19Selector = ({ showDosentMatterOption }) => {
+const Covid19Selector = ({ showDosentMatterOption, onChange }) => {
   const { formatMessage } = useIntl();
   return (
     <FormControlSpacing fullWidth>
@@ -20,6 +20,7 @@ const Covid19Selector = ({ showDosentMatterOption }) => {
       <Select
         labelId="covid19-select-label"
         defaultValue={DOSENT_MATTER_OR_KNOW}
+        onChange={(e) => onChange(e.target.value)}
       >
         <MenuItem value={DOSENT_MATTER_OR_KNOW}>
           {showDosentMatterOption
@@ -39,6 +40,7 @@ const Covid19Selector = ({ showDosentMatterOption }) => {
 
 Covid19Selector.propTypes = {
   showDosentMatterOption: bool,
+  onChange: func,
 };
 
 export default Covid19Selector;

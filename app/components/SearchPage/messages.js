@@ -11,11 +11,11 @@ export default defineMessages({
   },
   setFilters: {
     id: 'search.filters',
-    defaultMessage: 'Add filters',
+    defaultMessage: 'Change filters',
   },
   addSearchProfile: {
     id: 'search.profile.add',
-    defaultMessage: 'Create search profile',
+    defaultMessage: 'Set filters',
   },
   saveSearchProfile: {
     id: 'search.profile.save',
@@ -23,8 +23,7 @@ export default defineMessages({
   },
   addSearchProfileInfo: {
     id: 'search.profile.info',
-    defaultMessage:
-      'Use this profile to create a base template for searching if you have reocuring requirments on volunteers.',
+    defaultMessage: 'Set filters for your search',
   },
   searchProfileSelectPlaceholder: {
     id: 'search.profile.select',

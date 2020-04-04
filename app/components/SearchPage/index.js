@@ -21,13 +21,16 @@ const SearchPage = () => {
     if (searchQuery.name) {
       setLoading(true);
     }
-  });
+  }, [searchQuery]);
 
   return (
     <Layout>
       <FilterModal
         open={filterModalOpen}
-        onChange={() => {}}
+        onChange={(filter) => {
+          setSearchQuery({ ...searchQuery, ...filter });
+          setFilterModelOpen(false);
+        }}
         onClose={() => setFilterModelOpen(false)}
       />
       <SearchFieldWrapper>

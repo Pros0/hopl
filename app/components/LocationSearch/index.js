@@ -67,13 +67,6 @@ const LocationSearch = ({ onChange }) => {
               inputProps={{
                 ...params.inputProps,
                 autoComplete: 'new-password', // disable autocomplete and autofill
-                endAdornment: (
-                  <>
-                    {loading ? (
-                      <CircularProgress color="inherit" size={20} />
-                    ) : null}
-                  </>
-                ),
               }}
             />
           )}

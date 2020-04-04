@@ -17,6 +17,10 @@ import {
 } from '@loopback/rest';
 import {Organisation, SearchProfile} from '../models';
 import {OrganisationRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
+import {OPERATION_SECURITY_SPEC} from '../utils/security-spec';
+import {authorize} from '@loopback/authorization';
+import {basicAuthorization} from '../services/basic.authorizer';
 
 export class OrganisationSearchProfileController {
   constructor(
@@ -25,6 +29,7 @@ export class OrganisationSearchProfileController {
   ) {}
 
   @get('/organisations/{id}/search-profiles', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Array of Organisation has many SearchProfile',
@@ -36,6 +41,11 @@ export class OrganisationSearchProfileController {
       },
     },
   })
+  @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async find(
     @param.path.string('id') id: string,
     @param.query.object('filter') filter?: Filter<SearchProfile>,
@@ -44,6 +54,7 @@ export class OrganisationSearchProfileController {
   }
 
   @post('/organisations/{id}/search-profiles', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Organisation model instance',
@@ -52,6 +63,11 @@ export class OrganisationSearchProfileController {
         },
       },
     },
+  })
+  @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
   })
   async create(
     @param.path.string('id') id: typeof Organisation.prototype.id,
@@ -72,12 +88,18 @@ export class OrganisationSearchProfileController {
   }
 
   @patch('/organisations/{id}/search-profiles', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Organisation.SearchProfile PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
+  })
+  @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
   })
   async patch(
     @param.path.string('id') id: string,
@@ -98,12 +120,18 @@ export class OrganisationSearchProfileController {
   }
 
   @del('/organisations/{id}/search-profiles', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Organisation.SearchProfile DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
+  })
+  @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
   })
   async delete(
     @param.path.string('id') id: string,

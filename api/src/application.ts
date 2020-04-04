@@ -147,9 +147,13 @@ export class HoplApiApplication extends BootMixin(
         const input = new NewUser(yamlString);
         const password = await passwordHasher.hashPassword(input.password);
         input.password = password;
-        const user = await userRepo.create(_.omit(input, 'password'));
-
-        await userRepo.userCredentials(user.id).create({password});
+        try {
+          await userRepo.deleteAll();
+          const user = await userRepo.create(_.omit(input, 'password'));
+          await userRepo.userCredentials(user.id).create({password});
+        } catch (e) {
+          console.error('Problem while cleaning up pre-migration', e);
+        }
       }
     }
   }
@@ -169,13 +173,21 @@ export class HoplApiApplication extends BootMixin(
         const skillFile = path.join(skillsDir, file);
         const yamlString = YAML.parse(fs.readFileSync(skillFile, 'utf8'));
         const input = new Skill(yamlString);
-        await skillsRepo.create(input);
+        try {
+          await skillsRepo.create(input);
+        } catch (e) {
+          console.error('Problem while cleaning up pre-migration', e);
+        }
       }
     }
   }
 
   async migrateSchema(options?: SchemaMigrationOptions) {
-    await super.migrateSchema(options);
+    try {
+      await super.migrateSchema(options);
+    } catch (e) {
+      console.error('Problem while cleaning up pre-migration', e);
+    }
     await this.migrateUsers(options);
     await this.migrateSkills(options);
   }

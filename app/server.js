@@ -36,9 +36,6 @@ const getLocaleDataScript = (locale) => {
   return localeDataCache.get(lang);
 };
 
-// We need to load and expose the translations on the request for the user's
-// locale. These will only be used in production, in dev the `defaultMessage` in
-// each message description in the source code will be used.
 // eslint-disable-next-line global-require
 const getMessages = (locale) => require(`./lang/${locale}.json`);
 
@@ -48,7 +45,7 @@ app.prepare().then(() => {
     const locale = accept.language(supportedLanguages) || 'en';
     req.locale = locale;
     req.localeDataScript = getLocaleDataScript(locale);
-    req.messages = dev ? {} : getMessages(locale);
+    req.messages = getMessages(locale);
     handle(req, res);
   }).listen(port, (err) => {
     if (err) throw err;

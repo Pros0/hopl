@@ -19,6 +19,9 @@ import {
 import {Skill} from '../models';
 import {SkillRepository} from '../repositories';
 import {authenticate} from '@loopback/authentication';
+import {OPERATION_SECURITY_SPEC} from '../utils/security-spec';
+import {authorize} from '@loopback/authorization';
+import {basicAuthorization} from '../services/basic.authorizer';
 
 export class SkillController {
   constructor(
@@ -27,6 +30,7 @@ export class SkillController {
   ) {}
 
   @post('/skills', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Skill model instance',
@@ -35,6 +39,10 @@ export class SkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async create(
     @requestBody({
       content: {
@@ -52,6 +60,7 @@ export class SkillController {
   }
 
   @get('/skills/count', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Skill model count',
@@ -60,11 +69,16 @@ export class SkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async count(@param.where(Skill) where?: Where<Skill>): Promise<Count> {
     return this.skillRepository.count(where);
   }
 
   @get('/skills', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Array of Skill model instances',
@@ -80,11 +94,16 @@ export class SkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async find(@param.filter(Skill) filter?: Filter<Skill>): Promise<Skill[]> {
     return this.skillRepository.find(filter);
   }
 
   @patch('/skills', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Skill PATCH success count',
@@ -93,6 +112,10 @@ export class SkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async updateAll(
     @requestBody({
       content: {
@@ -108,6 +131,7 @@ export class SkillController {
   }
 
   @get('/skills/{id}', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '200': {
         description: 'Skill model instance',
@@ -129,6 +153,7 @@ export class SkillController {
   }
 
   @patch('/skills/{id}', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '204': {
         description: 'Skill PATCH success',
@@ -136,6 +161,10 @@ export class SkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async updateById(
     @param.path.string('id') id: string,
     @requestBody({
@@ -151,6 +180,7 @@ export class SkillController {
   }
 
   @put('/skills/{id}', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '204': {
         description: 'Skill PUT success',
@@ -158,6 +188,10 @@ export class SkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async replaceById(
     @param.path.string('id') id: string,
     @requestBody() skill: Skill,
@@ -166,6 +200,7 @@ export class SkillController {
   }
 
   @del('/skills/{id}', {
+    security: OPERATION_SECURITY_SPEC,
     responses: {
       '204': {
         description: 'Skill DELETE success',
@@ -173,6 +208,10 @@ export class SkillController {
     },
   })
   @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
   async deleteById(@param.path.string('id') id: string): Promise<void> {
     await this.skillRepository.deleteById(id);
   }

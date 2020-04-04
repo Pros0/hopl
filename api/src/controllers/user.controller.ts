@@ -170,7 +170,7 @@ export class UserController {
   })
   @authenticate('jwt')
   @authorize({
-    allowedRoles: ['admin', 'support', 'applicant'],
+    allowedRoles: ['admin', 'organiser', 'applicant'],
     voters: [basicAuthorization],
   })
   async findById(@param.path.string('userId') userId: string): Promise<User> {
@@ -192,8 +192,7 @@ export class UserController {
   })
   @authenticate('jwt')
   async printCurrentUser(
-    @inject(SecurityBindings.USER)
-    currentUserProfile: UserProfile,
+    @inject(SecurityBindings.USER) currentUserProfile: UserProfile,
   ): Promise<User> {
     const userId = currentUserProfile[securityId];
     return this.userRepository.findById(userId);

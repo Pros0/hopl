@@ -46,10 +46,10 @@ export async function basicAuthorization(
     return AuthorizationDecision.DENY;
   }
 
-  // Admin and support accounts bypass id verification
+  // Admin and organiser accounts bypass id verification
   if (
     currentUser.roles.includes('admin') ||
-    currentUser.roles.includes('support')
+    currentUser.roles.includes('organiser')
   ) {
     return AuthorizationDecision.ALLOW;
   }

@@ -12,6 +12,7 @@ const LocationSearch = () => {
     <LocationOn />
   </Grid>
   <FlexGrowGrid item>
+    <p>{process.env.locationIQAPIKey}</p>
     <TextField fullWidth label={formatMessage(messages.locationPlaceholder)} />
   </FlexGrowGrid>
 </Grid>

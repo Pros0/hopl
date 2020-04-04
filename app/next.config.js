@@ -7,5 +7,8 @@ module.exports = {
       "components"
     );
     return config;
-  }
+  },
+  env: {
+    locationIQAPIKey: process.env.LOCATIONIQ_API_KEY,
+  },
 }

@@ -131,7 +131,12 @@ export class HoplApiApplication extends BootMixin(
       PasswordHasherBindings.PASSWORD_HASHER,
     );
     const userRepo = await this.getRepository(UserRepository);
-    await userRepo.deleteAll();
+
+    try {
+      await userRepo.deleteAll();
+    } catch (e) {
+      console.error('Problem while cleaning up pre-migration', e);
+    }
     const usersDir = path.join(__dirname, '../fixtures/users');
     const userFiles = fs.readdirSync(usersDir);
 
@@ -151,7 +156,11 @@ export class HoplApiApplication extends BootMixin(
 
   async migrateSkills(options?: SchemaMigrationOptions) {
     const skillsRepo = await this.getRepository(SkillRepository);
-    await skillsRepo.deleteAll();
+    try {
+      await skillsRepo.deleteAll();
+    } catch (e) {
+      console.error('Problem while cleaning up pre-migration', e);
+    }
     const skillsDir = path.join(__dirname, '../fixtures/skills');
     const skillsFiles = fs.readdirSync(skillsDir);
 

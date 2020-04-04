@@ -39,6 +39,11 @@ export class User extends Entity {
   @hasMany(() => Skill)
   skills: Skill[];
 
+  @property({
+    type: 'string',
+  })
+  organisationId?: string;
+
   constructor(data?: Partial<User>) {
     super(data);
   }

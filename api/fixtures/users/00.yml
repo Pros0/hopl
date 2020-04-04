@@ -1,5 +1,5 @@
-email: adam@ramberg.com
-firstName: Adam
-lastName: Ramberg
-password: password11
-roles: ['organiser']
+email: admin@hopl.se
+firstName: Admin
+lastName: Root
+password: superadmin11
+roles: ['admin']

@@ -7,3 +7,8 @@ export const getGatewayUsersMe = () =>
 
 export const getGatewayUsers = () =>
   isDev() ? 'http://localhost:3000/users' : 'http://hopl.se:3000/users';
+
+export const getGatewayUsersLogin = () =>
+  isDev()
+    ? 'http://localhost:3000/users/login'
+    : 'http://hopl.se:3000/users/login';

@@ -22,6 +22,7 @@ const withAuth = ({
     static async getInitialProps(ctx) {
       const cookies = this.getCookies(ctx);
       const token = cookies.get('token');
+      console.log(WrappedComponent.name);
 
       const redirect = () =>
         typeof window !== 'undefined'
@@ -33,10 +34,13 @@ const withAuth = ({
       }
 
       // We don't care about the response, just that we don't get an error = we are authenticated
+      let isAuthenticated = true;
       const result = await fetcher(getGatewayUsersMe(), {
-        headers: { Authorization: token },
+        headers: { Authorization: `Bearer ${token}` },
+      }).catch(() => {
+        isAuthenticated = false;
       });
-      const isAuthenticated = !result.error;
+      isAuthenticated = isAuthenticated && !result.error;
 
       let pageProps = {};
       const shouldRenderWrappedComponent =

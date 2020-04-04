@@ -12,7 +12,6 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import SettingsIcon from '@material-ui/icons/Settings';
 import NextLink from 'next/link';
 
-
 export const mainListItems = (
   <div>
     <ListItem button>

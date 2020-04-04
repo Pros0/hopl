@@ -1,17 +1,21 @@
 import React from 'react';
-import { CardHeader, Card, Avatar, IconButton, Typography, CardContent, CardActions } from '@material-ui/core';
+import {
+  CardHeader,
+  Card,
+  Avatar,
+  IconButton,
+  Typography,
+  CardContent,
+  CardActions,
+} from '@material-ui/core';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { SearchItemWrapper } from './styled';
 
-const SearchResultItem = ({ avatar, infoText, name, shortInfo }) => {
-  return <SearchItemWrapper>
+const SearchResultItem = ({ avatar, infoText, name, shortInfo }) => (
+  <SearchItemWrapper>
     <Card>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe">
-            {avatar}
-          </Avatar>
-        }
+        avatar={<Avatar aria-label="recipe">{avatar}</Avatar>}
         title={name}
         subheader={shortInfo}
       />
@@ -27,6 +31,6 @@ const SearchResultItem = ({ avatar, infoText, name, shortInfo }) => {
       </CardActions>
     </Card>
   </SearchItemWrapper>
-}
+);
 
 export default SearchResultItem;

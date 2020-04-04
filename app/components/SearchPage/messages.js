@@ -7,22 +7,23 @@ export default defineMessages({
   },
   addSearchProfile: {
     id: 'search.profile.add',
-    defaultMessage: 'Create search profile'
+    defaultMessage: 'Create search profile',
   },
   saveSearchProfile: {
     id: 'search.profile.save',
-    defaultMessage: 'Save search profile'
+    defaultMessage: 'Save search profile',
   },
   addSearchProfileInfo: {
     id: 'search.profile.info',
-    defaultMessage: 'Use this profile to create a base template for searching if you have reocuring requirments on volunteers.'
+    defaultMessage:
+      'Use this profile to create a base template for searching if you have reocuring requirments on volunteers.',
   },
   searchProfileSelectPlaceholder: {
     id: 'search.profile.select',
-    defaultMessage: 'Default filter'    
+    defaultMessage: 'Default filter',
   },
   noSearchResults: {
     id: 'search.results.nousersfound',
-    defaultMessage: 'We could´t find any users matching your search query'   
-  }
+    defaultMessage: 'We could´t find any users matching your search query',
+  },
 });

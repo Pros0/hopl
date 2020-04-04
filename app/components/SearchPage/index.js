@@ -8,14 +8,19 @@ import { SearchFieldWrapper } from './styled';
 
 const SearchPage = () => {
   const [filterModalOpen, setFilterModelOpen] = useState(false);
-  return <>
-    <FilterModal open={filterModalOpen} onClose={() => setFilterModelOpen(false)} />
-    <SearchFieldWrapper>
-      <LocationSearch />
-      <SearchProfile addSearchProfileClick={() => setFilterModelOpen(true)} />
-    </SearchFieldWrapper>
-    <SearchResult />
-  </>;
-}
+  return (
+    <>
+      <FilterModal
+        open={filterModalOpen}
+        onClose={() => setFilterModelOpen(false)}
+      />
+      <SearchFieldWrapper>
+        <LocationSearch />
+        <SearchProfile addSearchProfileClick={() => setFilterModelOpen(true)} />
+      </SearchFieldWrapper>
+      <SearchResult />
+    </>
+  );
+};
 
 export default SearchPage;

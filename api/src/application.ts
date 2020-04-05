@@ -133,7 +133,7 @@ export class HoplApiApplication extends BootMixin(
     const userRepo = await this.getRepository(UserRepository);
 
     try {
-      await userRepo.deleteAll();
+      // await userRepo.deleteAll();
     } catch (e) {
       console.error('Problem while cleaning up pre-migration', e);
     }
@@ -161,7 +161,7 @@ export class HoplApiApplication extends BootMixin(
   async migrateSkills(options?: SchemaMigrationOptions) {
     const skillsRepo = await this.getRepository(SkillRepository);
     try {
-      await skillsRepo.deleteAll();
+      // await skillsRepo.deleteAll();
     } catch (e) {
       console.error('Problem while cleaning up pre-migration', e);
     }

@@ -28,4 +28,8 @@ export const SearchItemWrapper = styled(Grid).attrs({
   sm: 6,
   md: 4,
   lg: 3,
-})``;
+})`
+  &:hover {
+    cursor: pointer;
+  }
+`;

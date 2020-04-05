@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, array } from 'prop-types';
+import { bool, array, func } from 'prop-types';
 import { Skeleton } from '@material-ui/lab';
 import { useIntl } from 'react-intl';
 import { SearchResultWrapper, SearchResultText } from './styled';
@@ -55,7 +55,7 @@ const LoadingSearchResults = () =>
     />
   ));
 
-const SearchResult = ({ loading, searchResults }) => {
+const SearchResult = ({ loading, searchResults, onSelect }) => {
   const { formatMessage } = useIntl();
   return (
     <SearchResultWrapper>
@@ -67,9 +67,13 @@ const SearchResult = ({ loading, searchResults }) => {
             <>
               {searchResults.map((user) => (
                 <SearchResultItem
-                  name={user.name}
-                  infoText={user.info}
-                  avatar={user.name[0]}
+                  key={user.id}
+                  onClick={onSelect}
+                  name={`${user.firstName} ${user.lastName}`}
+                  infoText="Hi! I am just here for the demo so dont mind me!"
+                  avatar={`${user.firstName ? user.firstName[0] : ''}${
+                    user.lastName ? user.lastName[0] : ''
+                  }`}
                 />
               ))}
             </>
@@ -88,11 +92,13 @@ const SearchResult = ({ loading, searchResults }) => {
 
 SearchResult.propTypes = {
   loading: bool,
+  onSelect: func,
   searchResults: array,
 };
 
 SearchResult.defaultProps = {
   loading: false,
+  onSelect: () => {},
   searchResults: [],
 };
 

@@ -9,6 +9,10 @@ export default defineMessages({
     id: 'search.profile.placeholder',
     defaultMessage: 'Filter name',
   },
+  createContact: {
+    id: 'search.profile.contact',
+    defaultMessage: 'Send message',
+  },
   setFilters: {
     id: 'search.filters',
     defaultMessage: 'Change filters',

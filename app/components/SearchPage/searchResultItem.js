@@ -9,8 +9,8 @@ import {
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { SearchItemWrapper } from './styled';
 
-const SearchResultItem = ({ avatar, infoText, name, shortInfo }) => (
-  <SearchItemWrapper>
+const SearchResultItem = ({ avatar, infoText, name, shortInfo, onClick }) => (
+  <SearchItemWrapper onClick={onClick}>
     <Card>
       <CardHeader
         avatar={<Avatar aria-label="recipe">{avatar}</Avatar>}

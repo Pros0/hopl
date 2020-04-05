@@ -6,8 +6,6 @@ import * as Yup from 'yup';
 import Layout from '../components/Layout';
 import withAuth from '../hocs/withAuth';
 
-const contactFormEndpoint = process.env.REACT_APP_CONTACT_ENDPOINT;
-
 const User = ({ user, gg }) => {
   const { firstName, lastName, email } = user;
   console.log(user);

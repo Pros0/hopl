@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import { useIntl } from 'react-intl';
+import { AuthContext } from '../../contexts/authContext';
 import LocationSearch from 'components/LocationSearch';
 import FilterList from '@material-ui/icons/FilterList';
 import SearchResult from './searchResult';
@@ -15,6 +16,8 @@ const SearchPage = () => {
   const [searchQuery, setSearchQuery] = useState({});
   const [hasFilters, setHasFilters] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const token = useContext(AuthContext);
 
   useEffect(() => {
     console.log('filter changed:', searchQuery);

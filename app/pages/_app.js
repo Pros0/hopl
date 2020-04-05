@@ -4,7 +4,8 @@ import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { createIntl, createIntlCache, RawIntlProvider } from 'react-intl';
-
+import { Cookies } from 'react-cookie';
+import { AuthContext } from '../contexts/authContext';
 import originalTheme from '../theme/theme';
 import GlobalBodyHeightStyle from '../theme/globalBodyHeightStyle';
 import GlobalStyle from '../theme/globalStyle';
@@ -26,13 +27,19 @@ export default class HoplApp extends App {
     // eslint-disable-next-line no-underscore-dangle
     const { locale, messages } = req || window.__NEXT_DATA__.props;
 
-    return { pageProps, locale, messages };
+    const cookies =
+      ctx && ctx.req && ctx.req.headers.cookie
+        ? new Cookies(ctx.req.headers.cookie)
+        : new Cookies();
+
+    const token = cookies.get('token');
+
+    return { pageProps, locale, messages, token };
   }
 
   render() {
     const { theme } = this.state;
-    const { Component, pageProps, locale, messages } = this.props;
-
+    const { Component, pageProps, locale, messages, token } = this.props;
     const intl = createIntl(
       {
         locale,
@@ -53,7 +60,9 @@ export default class HoplApp extends App {
                   this.setState({ theme: { ...theme, ...toMerge } });
                 }}
               />
-              <Component {...pageProps} />
+              <AuthContext.Provider value={{ token }}>
+                <Component {...pageProps} />
+              </AuthContext.Provider>
             </>
           </ThemeProvider>
         </MuiThemeProvider>

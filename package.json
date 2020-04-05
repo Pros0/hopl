@@ -15,6 +15,7 @@
     "start:api": "yarn --cwd api start",
     "start:app": "yarn --cwd app start",
     "dev:app": "yarn --cwd app dev",
+    "dev:api": "yarn --cwd api dev",
     "prestart": "yarn build:all",
     "start": "concurrently -k \"yarn start:api\" \"yarn start:app\"",
     "dev": "concurrently -k \"yarn dev:api\" \"yarn dev:app\""

@@ -25,7 +25,7 @@ const SignUp = () => {
   const [response, setResponse] = useState(null);
 
   const handleChange = (e) => {
-    let newFormData = { ...formData };
+    const newFormData = { ...formData };
     if (e.target.name !== 'userType') {
       newFormData[e.target.name] = e.target.value;
     } else {

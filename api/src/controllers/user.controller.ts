@@ -85,7 +85,7 @@ export class UserController {
     })
     newUserRequest: NewUserRequest,
   ): Promise<User> {
-    newUserRequest.roles = ['applicant'];
+    newUserRequest.roles = newUserRequest.roles ?? ['applicant'];
     // ensure a valid email value and password value
     validateCredentials(_.pick(newUserRequest, ['email', 'password']));
 

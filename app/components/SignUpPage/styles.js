@@ -3,6 +3,7 @@ import {
   PageWrapper as DefaultPageWrapper,
   Title as DefaultTitle,
   Subtitle as DefaultSubtitle,
+  Button as DefaultButton,
 } from '../common/NotLoggedIn/styles';
 
 export const PageWrapper = styled(DefaultPageWrapper)`
@@ -21,3 +22,7 @@ export const Title = styled(DefaultTitle)`
 export const Subtitle = styled(DefaultSubtitle)`
   color: ${({ theme }) => theme.palette.primary.contrastText};
 `;
+
+export const Button = styled(DefaultButton).attrs(() => ({
+  color: 'secondary',
+}))``;

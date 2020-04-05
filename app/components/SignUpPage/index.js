@@ -15,9 +15,8 @@ import {
   ContentWrapper,
   Form,
   Card,
-  Button,
 } from '../common/NotLoggedIn/styles';
-import { PageWrapper, Title, Subtitle } from './styles';
+import { PageWrapper, Title, Subtitle, Button } from './styles';
 
 const SignUp = () => {
   const { formatMessage } = useIntl();
@@ -106,6 +105,7 @@ const SignUp = () => {
               variant="contained"
               type="submit"
               disabled={isSubmitting}
+              color="secondary"
             >
               {formatMessage(messages.signUpButton)}
             </Button>

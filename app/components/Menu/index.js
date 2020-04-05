@@ -4,18 +4,12 @@ import clsx from 'clsx';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
-import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge/Badge';
-import Drawer from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
-import List from '@material-ui/core/List';
 import { makeStyles } from '@material-ui/core';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Cookies } from 'react-cookie';
 import Router from 'next/router';
-import { mainListItems } from './listItems';
 
 const drawerWidth = 240;
 
@@ -101,13 +95,6 @@ const useStyles = makeStyles((theme) => ({
 const Menu = () => {
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(true);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   const signOut = () => {
     const cookies = new Cookies();
     cookies.remove('token');
@@ -116,23 +103,8 @@ const Menu = () => {
 
   return (
     <>
-      <AppBar
-        position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
-      >
+      <AppBar position="absolute" className={clsx(classes.appBar)}>
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden,
-            )}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography
             component="h1"
             variant="h6"
@@ -140,31 +112,13 @@ const Menu = () => {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            Hopl
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <Button onClick={signOut}>Sign out</Button>
+          <Button color="secondary" onClick={signOut}>
+            Sign out
+          </Button>
         </Toolbar>
       </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-      </Drawer>
     </>
   );
 };

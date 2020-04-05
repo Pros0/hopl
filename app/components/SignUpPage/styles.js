@@ -1,10 +1,10 @@
 import styled from 'styled-components';
+import { PageWrapper as DefaultPageWrapper } from '../common/NotLoggedIn/styles';
 import {
-  PageWrapper as DefaultPageWrapper,
   Title as DefaultTitle,
   Subtitle as DefaultSubtitle,
   Button as DefaultButton,
-} from '../common/NotLoggedIn/styles';
+} from '../common/Form/styles';
 
 export const PageWrapper = styled(DefaultPageWrapper)`
   background: ${({ theme }) => theme.palette.primary.light};

@@ -11,12 +11,8 @@ import withAuth from '../../hocs/withAuth';
 import messages from './messages';
 import login from '../../requests/login';
 import signUp from '../../requests/signUp';
-import {
-  LogoWrapper,
-  ContentWrapper,
-  Form,
-  Card,
-} from '../common/NotLoggedIn/styles';
+import { LogoWrapper, ContentWrapper } from '../common/NotLoggedIn/styles';
+import { Form, Card } from '../common/Form/styles';
 import { PageWrapper, Title, Subtitle, Button } from './styles';
 
 const SignUp = () => {

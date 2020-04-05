@@ -15,12 +15,8 @@ import {
   PageWrapper,
   LogoWrapper,
   ContentWrapper,
-  Form,
-  Title,
-  Subtitle,
-  Card,
-  Button,
 } from '../common/NotLoggedIn/styles';
+import { Form, Title, Subtitle, Card, Button } from '../common/Form/styles';
 
 const Login = () => {
   const { formatMessage } = useIntl();

@@ -3,7 +3,7 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
-import {repository, model, property} from '@loopback/repository';
+import {repository, model, property, Filter} from '@loopback/repository';
 import {validateCredentials} from '../services/validator.service';
 import {
   post,
@@ -175,6 +175,31 @@ export class UserController {
   })
   async findById(@param.path.string('userId') userId: string): Promise<User> {
     return this.userRepository.findById(userId);
+  }
+
+  @get('/users/search', {
+    security: OPERATION_SECURITY_SPEC,
+    responses: {
+      '200': {
+        description: 'Array of user model instances',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'array',
+              items: getModelSchemaRef(User, {includeRelations: true}),
+            },
+          },
+        },
+      },
+    },
+  })
+  @authenticate('jwt')
+  @authorize({
+    allowedRoles: ['admin', 'organiser', 'applicant'],
+    voters: [basicAuthorization],
+  })
+  async find(@param.filter(User) filter?: Filter<User>): Promise<User[]> {
+    return this.userRepository.find(filter);
   }
 
   @get('/users/me', {

@@ -3,8 +3,11 @@ import { useIntl } from 'react-intl';
 import NextLink from 'next/link';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
+import FormLabel from '@material-ui/core/FormLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Router from 'next/router';
-
 import Logo from '../Logo';
 import Alert from '../Alert';
 import withAuth from '../../hocs/withAuth';
@@ -21,15 +24,22 @@ const SignUp = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [response, setResponse] = useState(null);
 
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
+  const handleChange = (e) => {
+    let newFormData = { ...formData };
+    if (e.target.name !== 'userType') {
+      newFormData[e.target.name] = e.target.value;
+    } else {
+      newFormData.roles = [e.target.value];
+    }
+    setFormData(newFormData);
+  };
   const submit = (event) => {
     event.preventDefault();
     setIsSubmitting(true);
 
+    const { userType, ...body } = formData;
     signUp({
-      body: formData,
+      body,
       onComplete: () =>
         login({
           body: { email: formData.email, password: formData.password },
@@ -95,6 +105,27 @@ const SignUp = () => {
               onChange={handleChange}
               disabled={isSubmitting}
             />
+
+            <FormLabel component="legend">Gender</FormLabel>
+            <RadioGroup
+              required
+              defaultValue="applicant"
+              aria-label="userType"
+              name="userType"
+              onChange={handleChange}
+            >
+              <FormControlLabel
+                value="applicant"
+                control={<Radio />}
+                label="Volunteer"
+              />
+              <FormControlLabel
+                value="organiser"
+                control={<Radio />}
+                label="Organisation"
+              />
+            </RadioGroup>
+
             <Button
               fullWidth
               variant="contained"

@@ -3,13 +3,14 @@ import { useIntl } from 'react-intl';
 import NextLink from 'next/link';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
+import Router from 'next/router';
 
 import Logo from '../Logo';
 import Alert from '../Alert';
-import { getGatewayUsers } from '../../utils/gateways';
-import fetcher from '../../utils/fetcher';
 import withAuth from '../../hocs/withAuth';
 import messages from './messages';
+import login from '../../requests/login';
+import signUp from '../../requests/signUp';
 import {
   LogoWrapper,
   ContentWrapper,
@@ -31,22 +32,20 @@ const SignUp = () => {
     event.preventDefault();
     setIsSubmitting(true);
 
-    fetcher(getGatewayUsers(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((resp) => {
-        setResponse(resp);
-      })
-      .catch((error) => {
-        setResponse(error);
-      })
-      .finally(() => {
+    signUp({
+      body: formData,
+      onComplete: () =>
+        login({
+          body: { email: formData.email, password: formData.password },
+          onComplete: () => Router.push('/'),
+          onError: (r) => setResponse(r),
+          onFinally: () => setIsSubmitting(false),
+        }),
+      onError: (r) => {
+        setResponse(r);
         setIsSubmitting(false);
-      });
+      },
+    });
   };
 
   return (

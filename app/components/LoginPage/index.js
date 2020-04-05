@@ -4,15 +4,13 @@ import NextLink from 'next/link';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { Cookies } from 'react-cookie';
 import Router from 'next/router';
 
 import Logo from '../Logo';
 import Alert from '../Alert';
 import messages from './messages';
-import { getGatewayUsersLogin } from '../../utils/gateways';
-import fetcher from '../../utils/fetcher';
 import withAuth from '../../hocs/withAuth';
+import login from '../../requests/login';
 import {
   PageWrapper,
   LogoWrapper,
@@ -36,34 +34,16 @@ const Login = () => {
   const submit = (event) => {
     event.preventDefault();
 
-    fetcher(getGatewayUsersLogin(), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((resp) => {
-        if (resp.error) {
-          setResponse(
-            resp.error?.details?.[0]
-              ? { error: resp?.error?.details?.[0] }
-              : resp,
-          );
-        } else if (!resp.token) {
-          setResponse({ error: { message: 'Error logging in.' } });
-        } else {
-          const cookies = new Cookies();
-          cookies.set('token', resp.token);
-          Router.push('/');
-        }
-      })
-      .catch((error) => {
-        setResponse(error?.details?.[0] || error);
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    login({
+      body: formData,
+      onComplete: () => Router.push('/'),
+      onError: (resp) => setResponse(resp),
+      onFinally: () => setIsSubmitting(false),
+    });
   };
 
   return (

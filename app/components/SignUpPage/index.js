@@ -106,7 +106,6 @@ const SignUp = () => {
               disabled={isSubmitting}
             />
 
-            <FormLabel component="legend">Gender</FormLabel>
             <RadioGroup
               required
               defaultValue="applicant"

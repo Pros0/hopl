@@ -9,9 +9,15 @@
   "private": false,
   "scripts": {
     "postinstall": "yarn install --cwd api && yarn install --cwd app",
+    "build:api": "yarn --cwd api build",
+    "build:app": "yarn --cwd app build",
+    "build:all": "yarn build:api && yarn build:app",
     "start:api": "yarn --cwd api start",
-    "start:app": "yarn --cwd app dev",
-    "start": "concurrently -k \"yarn start:api\" \"yarn start:app\""
+    "start:app": "yarn --cwd app start",
+    "dev:app": "yarn --cwd app dev",
+    "prestart": "yarn build:all",
+    "start": "concurrently -k \"yarn start:api\" \"yarn start:app\"",
+    "dev": "concurrently -k \"yarn dev:api\" \"yarn dev:app\""
   },
   "dependencies": {
     "concurrently": "^5.1.0"

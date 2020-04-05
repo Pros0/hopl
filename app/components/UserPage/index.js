@@ -1,17 +1,20 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import Typography from '@material-ui/core/Typography';
+import Alert from '../Alert';
 import Layout from '../Layout';
 import saveUserDetails from '../../requests/saveUserDetails';
 import { UserForm, Card, PageWrapper, ButtonsWrapper } from './styles';
 import messages from './messages';
 
 const Form = ({ user }) => {
+  const [isSubmittingUserDetails, setIsSubmittingUserDetails] = useState(false);
+  const [saveUserDetailsResponse, setSaveUserDetailsResponse] = useState(null);
   const { formatMessage } = useIntl();
 
   return (
@@ -27,8 +30,18 @@ const Form = ({ user }) => {
             driversLicense: user.driversLicense || '',
             covidStatus: user.covidStatus || '',
           }}
-          onSubmit={(values) => {
-            console.log(values);
+          onSubmit={(values, actions) => {
+            if (isSubmittingUserDetails) return;
+            setIsSubmittingUserDetails(true);
+            saveUserDetails({
+              body: { id: user.id, ...values },
+              onComplete: () => {
+                setSaveUserDetailsResponse({});
+                actions.setSubmitting(false);
+              },
+              onError: setSaveUserDetailsResponse,
+              onFinally: () => setIsSubmittingUserDetails(false),
+            });
           }}
           validationSchema={Yup.object().shape({
             email: Yup.string().email().required('Required'),
@@ -167,6 +180,18 @@ const Form = ({ user }) => {
                     </Button>
                   </ButtonsWrapper>
                 </UserForm>
+
+                {saveUserDetailsResponse && (
+                  <Alert
+                    severity={
+                      saveUserDetailsResponse.error ? 'error' : 'success'
+                    }
+                  >
+                    {saveUserDetailsResponse.error
+                      ? saveUserDetailsResponse.error.message
+                      : `User details saved successfully!`}
+                  </Alert>
+                )}
               </Card>
             );
           }}

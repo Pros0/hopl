@@ -18,11 +18,11 @@ import {
   LogoWrapper,
   ContentWrapper,
   Form,
-  StyledCard,
   Title,
   Subtitle,
-  StyledButton,
-} from './styles';
+  Card,
+  Button,
+} from '../common/NotLoggedIn/styles';
 
 const Login = () => {
   const { formatMessage } = useIntl();
@@ -79,7 +79,7 @@ const Login = () => {
           </span>
         </Title>
         <Subtitle>{formatMessage(messages.subtitle)}</Subtitle>
-        <StyledCard>
+        <Card>
           <Form method="post" onSubmit={submit}>
             <TextField
               required
@@ -102,9 +102,9 @@ const Login = () => {
               onChange={handleChange}
               disabled={isSubmitting}
             />
-            <StyledButton fullWidth variant="contained" type="submit">
+            <Button fullWidth variant="contained" type="submit">
               {formatMessage(messages.loginButton)}
-            </StyledButton>
+            </Button>
           </Form>
 
           {response && response.error && (
@@ -113,7 +113,7 @@ const Login = () => {
                 formatMessage(messages.defaultErrorMsg)}
             </Alert>
           )}
-        </StyledCard>
+        </Card>
         <Typography component="h2" variant="subtitle1" gutterBottom>
           {formatMessage(messages.createAccountTitle)}
         </Typography>

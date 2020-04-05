@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import Card from '@material-ui/core/Card';
+import MuiCard from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import MuiButton from '@material-ui/core/Button';
 
 export const PageWrapper = styled.div`
   height: 100%;
@@ -36,10 +36,13 @@ export const Form = styled.form`
   }
 `;
 
-export const StyledCard = styled(Card)`
+export const Card = styled(MuiCard)`
   padding: ${({ theme }) => theme.spacing(5, 5, 5, 5)};
   text-align: center;
   margin: ${({ theme }) => theme.spacing(3, 2, 5, 2)};
+  && {
+    max-width: 500px;
+  }
 `;
 
 export const Title = styled(Typography).attrs(() => ({
@@ -56,7 +59,7 @@ export const Subtitle = styled(Typography).attrs(() => ({
   gutterBottom: true,
 }))``;
 
-export const StyledButton = styled(Button).attrs(() => ({ color: 'primary' }))`
+export const Button = styled(MuiButton).attrs(() => ({ color: 'primary' }))`
   && {
     margin: ${({ theme }) => theme.spacing(2, 0)};
   }

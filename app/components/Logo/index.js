@@ -11,8 +11,8 @@ const Img = styled.img`
   height: auto;
 `;
 
-const Logo = () => (
-  <Wrapper>
+const Logo = (props) => (
+  <Wrapper {...props}>
     <Img src="/hopl-logo-square.png" alt="Hopl" />
   </Wrapper>
 );

@@ -1,15 +1,12 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar/AppBar';
 import clsx from 'clsx';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge/Badge';
 import { makeStyles } from '@material-ui/core';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Cookies } from 'react-cookie';
 import Router from 'next/router';
+import { Logo, Toolbar } from './styles';
 
 const drawerWidth = 240;
 
@@ -112,7 +109,7 @@ const Menu = () => {
             noWrap
             className={classes.title}
           >
-            Hopl
+            <Logo />
           </Typography>
           <Button color="secondary" onClick={signOut}>
             Sign out

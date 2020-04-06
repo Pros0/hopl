@@ -9,11 +9,10 @@
  */
 
 module.exports.policies = {
-
-  '*': 'is-logged-in',
+  '*': 'is-authenticated',
 
   // Bypass the `is-logged-in` policy for:
-  'entrance/*': true,
+  'entrance/login': true,
   'account/logout': true,
   'view-homepage-or-redirect': true,
   'view-faq': true,
@@ -21,5 +20,7 @@ module.exports.policies = {
   'legal/view-terms': true,
   'legal/view-privacy': true,
   'deliver-contact-form-message': true,
-
+  controllerName: {
+    'action-name': 'is-authenticated',
+  },
 };

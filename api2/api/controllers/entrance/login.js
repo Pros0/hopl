@@ -1,3 +1,8 @@
+const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
+const signAsync = promisify(jwt.sign);
+const verifyAsync = promisify(jwt.verify);
+
 module.exports = {
 
   friendlyName: 'Login',
@@ -103,5 +108,11 @@ and exposed as \`req.me\`.)`
     // Modify the active session instance.
     // (This will be persisted when the response is sent.)
     //this.req.session.userId = userRecord.id;
+
+    const { emailAddress, id, ...rest } = userRecord;
+    const  token = await signAsync({emailAddress,id}, '111', {
+      expiresIn: Number(600),
+    });
+    return  token;
   }
 };

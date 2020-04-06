@@ -1,3 +1,9 @@
 {
-  "eslint.workingDirectories": ["app", "api"]
+  "eslint.workingDirectories": [
+    "app",
+    "api"
+  ],
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true
 }

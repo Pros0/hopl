@@ -6,8 +6,8 @@
   "scripts": {
     "dev-old": "next -p 3001",
     "dev": "node --icu-data-dir=node_modules/full-icu server.js",
-    "build": "next build && npm run extract",
-    "extract": "node ./scripts/extract '{pages,components}/*.{js,ts,tsx}'",
+    "build": "next build",
+    "translations:manage": "node ./scripts/translationManagement.js",
     "start-old": "next start -p 3001",
     "eslint:fix": "eslint --fix .",
     "start": "NODE_ENV=production node --icu-data-dir=node_modules/full-icu server.js"
@@ -50,6 +50,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
-    "prettier": "^2.0.2"
+    "prettier": "^2.0.2",
+    "react-intl-translations-manager": "^5.0.3",
+    "babel-plugin-react-intl": "^7.1.0"
   }
 }

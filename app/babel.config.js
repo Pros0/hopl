@@ -11,6 +11,12 @@ module.exports = (api) => {
           preprocess: false,
         },
       ],
+      [
+        'react-intl',
+        {
+          messagesDir: './lang/.messages',
+        },
+      ],
     ],
   };
 };

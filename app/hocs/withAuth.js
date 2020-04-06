@@ -32,7 +32,7 @@ const withAuth = ({
         return redirect();
       }
 
-      // We don't care about the response, just that we don't get an error = we are authenticated
+      // We now care a little about the response, because we want to send the logged in users data as a prop
       let isAuthenticated = true;
       const result = await fetcher(getGatewayUsersMe(), {
         headers: { Authorization: `Bearer ${token}` },
@@ -54,15 +54,18 @@ const withAuth = ({
         pageProps = await WrappedComponent.getInitialProps(ctx);
       }
 
-      pageProps = { ...pageProps, user: result };
-
-      return { pageProps, shouldRenderWrappedComponent };
+      return { pageProps, user: result, shouldRenderWrappedComponent };
     }
 
     render() {
-      const { pageProps, shouldRenderWrappedComponent, children } = this.props;
+      const {
+        pageProps,
+        user,
+        shouldRenderWrappedComponent,
+        children,
+      } = this.props;
       const component = WrappedComponent && shouldRenderWrappedComponent && (
-        <WrappedComponent {...pageProps}>{children}</WrappedComponent>
+        <WrappedComponent user={user} {...pageProps} />
       );
       const alt = AltComponent ? (
         <AltComponent {...pageProps}>{children}</AltComponent>
@@ -73,6 +76,7 @@ const withAuth = ({
 
   WithAuth.propTypes = {
     pageProps: object,
+    user: object,
     shouldRenderWrappedComponent: bool,
     children: node,
   };
@@ -81,9 +85,13 @@ const withAuth = ({
     WrappedComponent.displayName || WrappedComponent.name || 'Component'
   })`;
 
-  hoistNonReactStatic(WithAuth, WrappedComponent);
-
   return WithAuth;
 };
 
-export default withAuth;
+const hoistStatic = (higherOrderComponent) => (BaseComponent) => {
+  const NewComponent = higherOrderComponent(BaseComponent);
+  hoistNonReactStatic(NewComponent, BaseComponent);
+  return NewComponent;
+};
+
+export default hoistStatic(withAuth);

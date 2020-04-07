@@ -36,5 +36,25 @@ module.exports.blueprints = {
   *                                                                          *
   ***************************************************************************/
 
-  shortcuts: true,
+  shortcuts: false,
+
+  populate: false,
+
+  parseBlueprintOptions: function(req) {
+
+    // Get the default query options.
+    var queryOptions = req._sails.hooks.blueprints.parseBlueprintOptions(req);
+
+    // If this is the "find" or "populate" blueprint action, and the normal query options
+    // indicate that the request is attempting to set an exceedingly high `limit` clause,
+    // then prevent it (we'll say `limit` must not exceed 100).
+
+    if (req.options.associations && queryOptions.populates) {
+      req.options.associations.forEach(association => {
+        queryOptions.populates[association.alias].select = ['id'];
+      });
+    }
+
+    return queryOptions;
+  }
 };

@@ -1,1 +1,34 @@
-[{"id":"login.mainTitle","defaultMessage":"Welcome"},{"id":"login.subtitle","defaultMessage":"Log into your Hopl account."},{"id":"login.emailInputPlaceholder","defaultMessage":"Email"},{"id":"login.passwordInputPlaceholder","defaultMessage":"Password"},{"id":"login.loginButton","defaultMessage":"Login"},{"id":"login.defaultErrorMsg","defaultMessage":"Error logging in."},{"id":"login.createAccountTitle","defaultMessage":"Don't have an account?"},{"id":"login.createAccountLinkText","defaultMessage":"Create an account here"}]
+[
+  {
+    "id": "login.mainTitle",
+    "defaultMessage": "Welcome"
+  },
+  {
+    "id": "login.subtitle",
+    "defaultMessage": "Log into your Hopl account."
+  },
+  {
+    "id": "login.emailInputPlaceholder",
+    "defaultMessage": "Email"
+  },
+  {
+    "id": "login.passwordInputPlaceholder",
+    "defaultMessage": "Password"
+  },
+  {
+    "id": "login.loginButton",
+    "defaultMessage": "Login"
+  },
+  {
+    "id": "login.defaultErrorMsg",
+    "defaultMessage": "Error logging in."
+  },
+  {
+    "id": "login.createAccountTitle",
+    "defaultMessage": "Don't have an account?"
+  },
+  {
+    "id": "login.createAccountLinkText",
+    "defaultMessage": "Create an account here"
+  }
+]

@@ -18,7 +18,7 @@ module.exports.routes = {
   //  ║║║║╚═╗║    ╠╦╝║╣  ║║║╠╦╝║╣ ║   ║ ╚═╗  ┌┼─   ║║║ ║║║║║║║║  ║ ║╠═╣ ║║╚═╗
   //  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
   '/terms':                   '/legal/terms',
-  '/logout':                  '/account/logout',
+  '/logout':                  '/users/logout',
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗
@@ -30,13 +30,13 @@ module.exports.routes = {
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
   // Note that, in this app, these API endpoints may be accessed using the `Cloud.*()` methods
   // from the Parasails library, or by using those method names as the `action` in <ajax-form>.
-  '/account/logout':                           { action: 'account/logout' },
-  'PUT   /account/update-password':            { action: 'account/update-password' },
-  'PUT   /account/update-profile':             { action: 'account/update-profile' },
-  'PUT   /account/update-billing-card':        { action: 'account/update-billing-card' },
-  'POST   /entrance/login':                       { action: 'entrance/login' },
-  'POST  /entrance/signup':                       { action: 'entrance/signup' },
-  'POST  /entrance/send-password-recovery-email': { action: 'entrance/send-password-recovery-email' },
-  'POST  /entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
+  '/users/logout':                           { action: 'account/logout' },
+  'PUT   /users/update-password':            { action: 'account/update-password' },
+  'PUT   /users/update-profile':             { action: 'account/update-profile' },
+  'PUT   /users/update-billing-card':        { action: 'account/update-billing-card' },
+  'POST   /users/login':                       { action: 'entrance/login' },
+  'POST  /users/signup':                       { action: 'entrance/signup' },
+  'POST  /users/send-password-recovery-email': { action: 'entrance/send-password-recovery-email' },
+  'POST  /users/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
 };

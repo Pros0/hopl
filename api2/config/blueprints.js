@@ -40,6 +40,8 @@ module.exports.blueprints = {
 
   populate: false,
 
+  pluralize: true,
+
   parseBlueprintOptions: function(req) {
 
     // Get the default query options.

@@ -1,1 +1,46 @@
-[{"id":"driverlicence.type.A","defaultMessage":"Heavyweight motorcykel"},{"id":"driverlicence.type.A1","defaultMessage":"Lightweight motorcykel"},{"id":"driverlicence.type.A2","defaultMessage":"Middleweight motorcykel"},{"id":"driverlicence.type.AM","defaultMessage":"Moped Class 1"},{"id":"driverlicence.type.B","defaultMessage":"Car and light truck"},{"id":"driverlicence.type.BE","defaultMessage":"Car and heavy trailer"},{"id":"driverlicence.type.C","defaultMessage":"Heavyweight truck"},{"id":"driverlicence.type.C1","defaultMessage":"Middleweight truck"},{"id":"driverlicence.type.D","defaultMessage":"Bus"},{"id":"driverlicence.type.D1","defaultMessage":"Middlesized Bus"},{"id":"driverlicence.type.ExtendedB","defaultMessage":"Car with heavier trailer than regular B"}]
+[
+  {
+    "id": "driverlicence.type.A",
+    "defaultMessage": "Heavyweight motorcykel"
+  },
+  {
+    "id": "driverlicence.type.A1",
+    "defaultMessage": "Lightweight motorcykel"
+  },
+  {
+    "id": "driverlicence.type.A2",
+    "defaultMessage": "Middleweight motorcykel"
+  },
+  {
+    "id": "driverlicence.type.AM",
+    "defaultMessage": "Moped Class 1"
+  },
+  {
+    "id": "driverlicence.type.B",
+    "defaultMessage": "Car and light truck"
+  },
+  {
+    "id": "driverlicence.type.BE",
+    "defaultMessage": "Car and heavy trailer"
+  },
+  {
+    "id": "driverlicence.type.C",
+    "defaultMessage": "Heavyweight truck"
+  },
+  {
+    "id": "driverlicence.type.C1",
+    "defaultMessage": "Middleweight truck"
+  },
+  {
+    "id": "driverlicence.type.D",
+    "defaultMessage": "Bus"
+  },
+  {
+    "id": "driverlicence.type.D1",
+    "defaultMessage": "Middlesized Bus"
+  },
+  {
+    "id": "driverlicence.type.ExtendedB",
+    "defaultMessage": "Car with heavier trailer than regular B"
+  }
+]

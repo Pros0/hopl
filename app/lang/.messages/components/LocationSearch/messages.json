@@ -1,1 +1,6 @@
-[{"id":"location.search.placeholder","defaultMessage":"Search for a location"}]
+[
+  {
+    "id": "location.search.placeholder",
+    "defaultMessage": "Search for a location"
+  }
+]

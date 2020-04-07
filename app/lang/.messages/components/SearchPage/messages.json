@@ -1,1 +1,38 @@
-[{"id":"search.placeholder","defaultMessage":"Search for a city to search in"},{"id":"search.profile.placeholder","defaultMessage":"Filter name"},{"id":"search.profile.contact","defaultMessage":"Send message"},{"id":"search.filters","defaultMessage":"Change filters"},{"id":"search.profile.add","defaultMessage":"Set filters"},{"id":"search.profile.save","defaultMessage":"Apply filter"},{"id":"search.profile.info","defaultMessage":"Set filters for your search"},{"id":"search.profile.select","defaultMessage":"Default filter"},{"id":"search.results.nousersfound","defaultMessage":"We could´t find any users matching your search query"}]
+[
+  {
+    "id": "search.placeholder",
+    "defaultMessage": "Search for a city to search in"
+  },
+  {
+    "id": "search.profile.placeholder",
+    "defaultMessage": "Filter name"
+  },
+  {
+    "id": "search.profile.contact",
+    "defaultMessage": "Send message"
+  },
+  {
+    "id": "search.filters",
+    "defaultMessage": "Change filters"
+  },
+  {
+    "id": "search.profile.add",
+    "defaultMessage": "Set filters"
+  },
+  {
+    "id": "search.profile.save",
+    "defaultMessage": "Apply filter"
+  },
+  {
+    "id": "search.profile.info",
+    "defaultMessage": "Set filters for your search"
+  },
+  {
+    "id": "search.profile.select",
+    "defaultMessage": "Default filter"
+  },
+  {
+    "id": "search.results.nousersfound",
+    "defaultMessage": "We could´t find any users matching your search query"
+  }
+]

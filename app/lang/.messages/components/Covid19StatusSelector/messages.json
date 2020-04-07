@@ -1,1 +1,22 @@
-[{"id":"covid19.status.selectTitle","defaultMessage":"Covid-19 status"},{"id":"covid19.status.dosentMatter","defaultMessage":"Doesn't matter"},{"id":"covid19.status.dontknow","defaultMessage":"Don´t know"},{"id":"covid19.status.haveit","defaultMessage":"Have Covid-19"},{"id":"covid19.status.havehadit","defaultMessage":"Have had Covid-19"}]
+[
+  {
+    "id": "covid19.status.selectTitle",
+    "defaultMessage": "Covid-19 status"
+  },
+  {
+    "id": "covid19.status.dosentMatter",
+    "defaultMessage": "Doesn't matter"
+  },
+  {
+    "id": "covid19.status.dontknow",
+    "defaultMessage": "Don´t know"
+  },
+  {
+    "id": "covid19.status.haveit",
+    "defaultMessage": "Have Covid-19"
+  },
+  {
+    "id": "covid19.status.havehadit",
+    "defaultMessage": "Have had Covid-19"
+  }
+]

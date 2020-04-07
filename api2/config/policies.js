@@ -12,7 +12,8 @@ module.exports.policies = {
   '*': 'is-authenticated',
 
   // Bypass the `is-logged-in` policy for:
-  'entrance/*': true,
+  'users/login': true,
+  'users/signup': true,
   'account/logout': true,
   'view-homepage-or-redirect': true,
   'view-faq': true,

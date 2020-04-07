@@ -1,1 +1,42 @@
-[{"id":"userPage.mainTitle","defaultMessage":"About me"},{"id":"userPage.emailInputPlaceholder","defaultMessage":"Email"},{"id":"userPage.firstNameInputPlaceholder","defaultMessage":"First Name"},{"id":"userPage.lastNameInputPlaceholder","defaultMessage":"Last Name"},{"id":"userPage.phoneInputPlaceholder","defaultMessage":"Phone"},{"id":"userPage.cityInputPlaceholder","defaultMessage":"City"},{"id":"userPage.driversLicenseInputPlaceholder","defaultMessage":"Drivers License"},{"id":"userPage.covidStatusInputPlaceholder","defaultMessage":"Covid Status"},{"id":"userPage.resetButtonText","defaultMessage":"Reset"},{"id":"userPage.saveButtonText","defaultMessage":"Save"}]
+[
+  {
+    "id": "userPage.mainTitle",
+    "defaultMessage": "About me"
+  },
+  {
+    "id": "userPage.emailInputPlaceholder",
+    "defaultMessage": "Email"
+  },
+  {
+    "id": "userPage.firstNameInputPlaceholder",
+    "defaultMessage": "First Name"
+  },
+  {
+    "id": "userPage.lastNameInputPlaceholder",
+    "defaultMessage": "Last Name"
+  },
+  {
+    "id": "userPage.phoneInputPlaceholder",
+    "defaultMessage": "Phone"
+  },
+  {
+    "id": "userPage.cityInputPlaceholder",
+    "defaultMessage": "City"
+  },
+  {
+    "id": "userPage.driversLicenseInputPlaceholder",
+    "defaultMessage": "Drivers License"
+  },
+  {
+    "id": "userPage.covidStatusInputPlaceholder",
+    "defaultMessage": "Covid Status"
+  },
+  {
+    "id": "userPage.resetButtonText",
+    "defaultMessage": "Reset"
+  },
+  {
+    "id": "userPage.saveButtonText",
+    "defaultMessage": "Save"
+  }
+]

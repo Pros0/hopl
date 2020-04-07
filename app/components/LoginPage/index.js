@@ -63,7 +63,7 @@ const Login = () => {
               label={formatMessage(messages.emailInputPlaceholder)}
               variant="outlined"
               margin="normal"
-              name="email"
+              name="emailAddress"
               onChange={handleChange}
               disabled={isSubmitting}
             />

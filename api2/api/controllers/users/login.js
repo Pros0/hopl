@@ -112,6 +112,6 @@ and exposed as \`req.me\`.)`
     const  token = await signAsync({emailAddress,id}, '111', {
       expiresIn: Number(600),
     });
-    return  token;
+    return  {token};
   }
 };

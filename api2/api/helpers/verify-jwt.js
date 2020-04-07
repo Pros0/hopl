@@ -1,4 +1,6 @@
 var jwt = require('jsonwebtoken');
+const { promisify } = require('util');
+const verifyAsync = promisify(jwt.verify);
 
 module.exports = {
   friendlyName: 'Verify JWT',
@@ -22,28 +24,39 @@ module.exports = {
       description: 'Invalid token or no authentication present.',
     }
   },
-  fn: function (inputs, exits) {
-    var req = inputs.req;
-    var res = inputs.res;
+  fn: async function (inputs, exits) {
+    const {req} = inputs;
     if (req.header('authorization')) {
       // if one exists, attempt to get the header data
-      var token = req.header('authorization').split('Bearer ')[1];
+      const token = req.header('authorization').split('Bearer ')[1];
       // if there's nothing after "Bearer", no go
       if (!token) {
+        sails.log.error('Found invalid token');
         return exits.invalid();
       }
       // if there is something, attempt to parse it as a JWT token
-      return jwt.verify(token, process.env.JWT_KEY, async (err, payload) => {
-        if (err || !payload.sub) {
+      try {
+        const payload = await verifyAsync(token, '111');
+        //sails.log.info('Got payload', payload);
+
+        if (!payload.id && !payload.emailAddress) {
           return exits.invalid();
         }
-        var user = await User.findOne(payload.sub);
-        if (!user) {return exits.invalid();}
+
+        const user = await User.findOne(payload.id);
+        if (!user) {
+          return exits.invalid();
+        }
+        // sails.log.info('Found corresponding user', user);
         // if it got this far, everything checks out, success
         req.user = user;
         return exits.success(user);
-      });
+      } catch (err) {
+        sails.log.error('Error when validating token', err);
+        return exits.invalid();
+      }
+    } else {
+      return exits.invalid();
     }
-    return exits.invalid();
   }
 };

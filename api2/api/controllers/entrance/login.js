@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const signAsync = promisify(jwt.sign);
-const verifyAsync = promisify(jwt.verify);
 
 module.exports = {
 
@@ -109,7 +108,7 @@ and exposed as \`req.me\`.)`
     // (This will be persisted when the response is sent.)
     //this.req.session.userId = userRecord.id;
 
-    const { emailAddress, id, ...rest } = userRecord;
+    const { emailAddress, id } = userRecord;
     const  token = await signAsync({emailAddress,id}, '111', {
       expiresIn: Number(600),
     });

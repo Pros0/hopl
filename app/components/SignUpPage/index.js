@@ -3,7 +3,6 @@ import { useIntl } from 'react-intl';
 import NextLink from 'next/link';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
-import FormLabel from '@material-ui/core/FormLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -20,26 +19,19 @@ import { PageWrapper, Title, Subtitle, Button } from './styles';
 
 const SignUp = () => {
   const { formatMessage } = useIntl();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({ userType: 'volunteer' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [response, setResponse] = useState(null);
 
   const handleChange = (e) => {
-    const newFormData = { ...formData };
-    if (e.target.name !== 'userType') {
-      newFormData[e.target.name] = e.target.value;
-    } else {
-      newFormData.roles = [e.target.value];
-    }
-    setFormData(newFormData);
+    formData[e.target.name] = e.target.value;
+    setFormData(formData);
   };
   const submit = (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-
-    const { userType, ...body } = formData;
     signUp({
-      body,
+      body: formData,
       onComplete: () =>
         login({
           body: { email: formData.email, password: formData.password },
@@ -108,18 +100,18 @@ const SignUp = () => {
 
             <RadioGroup
               required
-              defaultValue="applicant"
+              defaultValue="volunteer"
               aria-label="userType"
               name="userType"
               onChange={handleChange}
             >
               <FormControlLabel
-                value="applicant"
+                value="volunteer"
                 control={<Radio />}
                 label="Volunteer"
               />
               <FormControlLabel
-                value="organiser"
+                value="organisation"
                 control={<Radio />}
                 label="Organisation"
               />

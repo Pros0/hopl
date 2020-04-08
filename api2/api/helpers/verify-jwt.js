@@ -1,4 +1,4 @@
-var jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
 const verifyAsync = promisify(jwt.verify);
 
@@ -39,7 +39,7 @@ module.exports = {
         const payload = await verifyAsync(token, '111');
         //sails.log.info('Got payload', payload);
 
-        if (!payload.id && !payload.emailAddress) {
+        if (!payload.id && !payload.email) {
           return exits.invalid();
         }
 
@@ -51,8 +51,8 @@ module.exports = {
         // if it got this far, everything checks out, success
         req.user = user;
         return exits.success(user);
-      } catch (err) {
-        sails.log.error('Error when validating token', err);
+      } catch(err) {
+        sails.log.error('Error when validating token');
         return exits.invalid();
       }
     } else {

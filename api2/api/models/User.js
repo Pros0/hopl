@@ -12,7 +12,7 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    emailAddress: {
+    email: {
       type: 'string',
       required: true,
       unique: true,
@@ -56,13 +56,21 @@ email status until they click the link in the confirmation email.`
       example: 'Christopher'
     },
 
-
     lastName: {
       type: 'string',
       required: true,
       description: 'Last name of the user.',
       maxLength: 120,
       example: 'Svanefalk'
+    },
+
+    userType: {
+      type: 'string',
+      required: true,
+      isIn: ['volunteer', 'organiser'],
+      description: 'Type of user in the system.',
+      maxLength: 120,
+      example: 'Volunteer or organiser'
     },
 
     isSuperAdmin: {

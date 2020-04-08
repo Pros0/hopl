@@ -9,7 +9,7 @@ module.exports = {
 
   inputs: {
 
-    emailAddress: {
+    email: {
       required: true,
       type: 'string',
       description: 'A return email address where we can respond.',
@@ -50,10 +50,10 @@ module.exports = {
 
   fn: async function(inputs) {
 
-    if (!sails.config.custom.internalEmailAddress) {
+    if (!sails.config.custom.internalEmail) {
       throw new Error(
 `Cannot deliver incoming message from contact form because there is no internal
-email address (\`sails.config.custom.internalEmailAddress\`) configured for this
+email address (\`sails.config.custom.internalEmail\`) configured for this
 app.  To enable contact form emails, you'll need to add this missing setting to
 your custom config -- usually in \`config/custom.js\`, \`config/staging.js\`,
 \`config/production.js\`, or via system environment variables.`
@@ -61,13 +61,13 @@ your custom config -- usually in \`config/custom.js\`, \`config/staging.js\`,
     }
 
     await sails.helpers.sendTemplateEmail.with({
-      to: sails.config.custom.internalEmailAddress,
+      to: sails.config.custom.internalEmail,
       subject: 'New contact form message',
       template: 'internal/email-contact-form',
       layout: false,
       templateData: {
         contactName: inputs.fullName,
-        contactEmail: inputs.emailAddress,
+        contactEmail: inputs.email,
         topic: inputs.topic,
         message: inputs.message
       }

@@ -77,10 +77,10 @@ module.exports = Object.assign({}, PRODUCTION_CONFIG, {
     // ||  (or use system env var: `sails_custom__baseUrl`)
     //--------------------------------------------------------------------------
 
-    internalEmailAddress: 'support+staging@example.com',
+    internalEmail: 'support+staging@example.com',
     //--------------------------------------------------------------------------
     // /\  Hard-code the email address that should receive support/contact form
-    // ||  messages in staging (or use `sails_custom__internalEmailAddress`)
+    // ||  messages in staging (or use `sails_custom__internalEmail`)
     //--------------------------------------------------------------------------
 
     // mailgunSecret: 'key-sandbox_fake_bd32301385130a0bafe030c',

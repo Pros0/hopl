@@ -333,7 +333,7 @@ module.exports = {
    ***************************************************************************/
   custom: {
     //baseUrl: "http://localhost:1337",
-    internalEmailAddress: 'support@example.com',
+    internalEmail: 'support@example.com',
 
     // mailgunDomain: 'mg.example.com',
     // mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',

@@ -12,7 +12,7 @@ until they confirm they are using a legitimate email address (by clicking the li
 the account verification message.)`,
 
   inputs: {
-    emailAddress: {
+    email: {
       required: true,
       type: 'string',
       isEmail: true,
@@ -28,11 +28,26 @@ the account verification message.)`,
       description: 'The unencrypted password to use for the new account.',
     },
 
-    fullName: {
+    firstName: {
       required: true,
       type: 'string',
-      example: 'Frida Kahlo de Rivera',
-      description: 'The user\'s full name.',
+      example: 'John',
+      description: 'The first name of the user.',
+    },
+
+    lastName: {
+      required: true,
+      type: 'string',
+      example: 'Doe',
+      description: 'The last name of the user.',
+    },
+
+    userType: {
+      required: true,
+      type: 'string',
+      isIn: ['volunteer', 'organiser'],
+      example: 'volunteer or organiser',
+      description: 'The user type in the system.',
     },
   },
 
@@ -44,7 +59,7 @@ the account verification message.)`,
     invalid: {
       responseType: 'badRequest',
       description:
-        'The provided fullName, password and/or email address are invalid.',
+        'The provided first name, last name, user type, password and/or email address are invalid.',
       extendedDescription:
         'If this request was sent from a graphical user interface, the request ' +
         'parameters should have been validated/coerced _before_ they were sent.',
@@ -57,19 +72,21 @@ the account verification message.)`,
   },
 
   fn: async function (inputs) {
-    var newEmailAddress = inputs.emailAddress.toLowerCase();
+    var newEmail = inputs.email.toLowerCase();
 
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     var newUserRecord = await User.create(
       _.extend(
         {
-          emailAddress: newEmailAddress,
+          email: newEmail,
           password: await sails.helpers.passwords.hashPassword(inputs.password),
-          fullName: inputs.fullName,
+          firstName: inputs.firstName,
+          lastName: inputs.lastName,
+          userType: inputs.userType,
           tosAcceptedByIp: this.req.ip,
         },
-        sails.config.custom.verifyEmailAddresses
+        sails.config.custom.verifyEmailes
           ? {
             emailProofToken: await sails.helpers.strings.random(
                 'url-friendly'
@@ -90,7 +107,7 @@ the account verification message.)`,
     if (sails.config.custom.enableBillingFeatures) {
       let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo
         .with({
-          emailAddress: newEmailAddress,
+          email: newEmail,
         })
         .timeout(5000)
         .retry();
@@ -102,10 +119,10 @@ the account verification message.)`,
     // Store the user's new id in their session.
     // this.req.session.userId = newUserRecord.id;
 
-    if (sails.config.custom.verifyEmailAddresses) {
+    if (sails.config.custom.verifyEmailes) {
       // Send "confirm account" email
       await sails.helpers.sendTemplateEmail.with({
-        to: newEmailAddress,
+        to: newEmail,
         subject: 'Please confirm your account',
         template: 'email-verify-account',
         templateData: {
@@ -115,7 +132,7 @@ the account verification message.)`,
       });
     } else {
       sails.log.info(
-        'Skipping new account email verification... (since `verifyEmailAddresses` is disabled)'
+        'Skipping new account email verification... (since `verifyEmailes` is disabled)'
       );
     }
   },

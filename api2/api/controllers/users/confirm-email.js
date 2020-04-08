@@ -36,7 +36,7 @@ then redirect to either a special landing page (for newly-signed up users), or t
       description: 'The provided token is expired, invalid, or already used up.',
     },
 
-    emailAddressNoLongerAvailable: {
+    emailNoLongerAvailable: {
       statusCode: 409,
       viewTemplatePath: '500',
       description: 'The email address is no longer available.',
@@ -95,8 +95,8 @@ then redirect to either a special landing page (for newly-signed up users), or t
       // sure no one else managed to grab this email in the mean time since we
       // last checked its availability. (This is a relatively rare edge case--
       // see exit description.)
-      if (await User.count({ emailAddress: user.emailChangeCandidate }) > 0) {
-        throw 'emailAddressNoLongerAvailable';
+      if (await User.count({ email: user.emailChangeCandidate }) > 0) {
+        throw 'emailNoLongerAvailable';
       }
 
       // If billing features are enabled, also update the billing email for this
@@ -110,7 +110,7 @@ then redirect to either a special landing page (for newly-signed up users), or t
         let didNotAlreadyHaveCustomerId = (! user.stripeCustomerId);
         let stripeCustomerId = await sails.helpers.stripe.saveBillingInfo.with({
           stripeCustomerId: user.stripeCustomerId,
-          emailAddress: user.emailChangeCandidate
+          email: user.emailChangeCandidate
         }).timeout(5000).retry();
         if (didNotAlreadyHaveCustomerId){
           await User.updateOne({ id: user.id }).set({
@@ -127,7 +127,7 @@ then redirect to either a special landing page (for newly-signed up users), or t
         emailStatus: 'confirmed',
         emailProofToken: '',
         emailProofTokenExpiresAt: 0,
-        emailAddress: user.emailChangeCandidate,
+        email: user.emailChangeCandidate,
         emailChangeCandidate: '',
       });
       this.req.session.userId = user.id;

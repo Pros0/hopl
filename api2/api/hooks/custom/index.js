@@ -16,7 +16,7 @@ module.exports = function defineCustomHook(sails) {
 
       // Check Stripe/Mailgun configuration (for billing and emails).
       var IMPORTANT_STRIPE_CONFIG = ['stripeSecret', 'stripePublishableKey'];
-      var IMPORTANT_MAILGUN_CONFIG = ['mailgunSecret', 'mailgunDomain', 'internalEmailAddress'];
+      var IMPORTANT_MAILGUN_CONFIG = ['mailgunSecret', 'mailgunDomain', 'internalEmail'];
       var isMissingStripeConfig = _.difference(IMPORTANT_STRIPE_CONFIG, Object.keys(sails.config.custom)).length > 0;
       var isMissingMailgunConfig = _.difference(IMPORTANT_MAILGUN_CONFIG, Object.keys(sails.config.custom)).length > 0;
 
@@ -53,8 +53,8 @@ module.exports = function defineCustomHook(sails) {
         if (sails.config.custom.mailgunDomain === undefined) {
           problems.push('No `sails.config.custom.mailgunDomain` was configured.');
         }
-        if (sails.config.custom.internalEmailAddress === undefined) {
-          problems.push('No `sails.config.custom.internalEmailAddress` was configured.');
+        if (sails.config.custom.internalEmail === undefined) {
+          problems.push('No `sails.config.custom.internalEmail` was configured.');
         }
 
         sails.log.verbose(
@@ -84,7 +84,7 @@ will be disabled and/or hidden in the UI.
         sails.helpers.mailgun.configure({
           secret: sails.config.custom.mailgunSecret,
           domain: sails.config.custom.mailgunDomain,
-          from: sails.config.custom.fromEmailAddress,
+          from: sails.config.custom.fromEmail,
           fromName: sails.config.custom.fromName,
         });
 
@@ -237,7 +237,7 @@ will be disabled and/or hidden in the UI.
               // Include information on the locals as to whether billing features
               // are enabled for this app, and whether email verification is required.
               res.locals.isBillingEnabled = sails.config.custom.enableBillingFeatures;
-              res.locals.isEmailVerificationRequired = sails.config.custom.verifyEmailAddresses;
+              res.locals.isEmailVerificationRequired = sails.config.custom.verifyEmailes;
 
             }//ﬁ
 

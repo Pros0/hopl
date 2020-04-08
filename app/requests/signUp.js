@@ -2,7 +2,7 @@ import fetcher from '../utils/fetcher';
 import { getGatewayUsers } from '../utils/gateways';
 
 const signUp = ({ body, onComplete, onError, onFinally }) =>
-  fetcher(getGatewayUsers(), {
+  fetcher(`${getGatewayUsers()}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

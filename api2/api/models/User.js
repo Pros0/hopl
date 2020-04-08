@@ -48,12 +48,21 @@ email status until they click the link in the confirmation email.`
       example: '2$28a8eabna301089103-13948134nad'
     },
 
-    fullName: {
+    firstName: {
       type: 'string',
       required: true,
-      description: 'Full representation of the user\'s name.',
+      description: 'First name of the user.',
       maxLength: 120,
-      example: 'Mary Sue van der McHenst'
+      example: 'Christopher'
+    },
+
+
+    lastName: {
+      type: 'string',
+      required: true,
+      description: 'Last name of the user.',
+      maxLength: 120,
+      example: 'Svanefalk'
     },
 
     isSuperAdmin: {
@@ -169,6 +178,4 @@ without necessarily having a billing card.`
       via: 'users'
     }
   },
-
-
 };
